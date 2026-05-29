@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Haopeng Jin's personal academic homepage: multimodal AI, video understanding, model post-training, AI safety, and ML systems."
+    />
+    <title>Haopeng Jin | Multimodal AI & ML Systems</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="aurora-bg" aria-hidden="true">
+      <span class="aurora-beam beam-one"></span>
+      <span class="aurora-beam beam-two"></span>
+      <span class="aurora-beam beam-three"></span>
+      <span class="aurora-particle particle-one"></span>
+      <span class="aurora-particle particle-two"></span>
+      <span class="aurora-particle particle-three"></span>
+      <span class="aurora-particle particle-four"></span>
+    </div>
+    <div class="site-shell">
+      <header class="nav">
+        <a class="brand" href="#top" aria-label="Haopeng Jin homepage">
+          <span class="brand-mark">HJ</span>
+          <span>Haopeng Jin</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Open navigation">Menu</button>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#about">About</a>
+          <a href="#research">Research</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="hero section">
+          <div class="hero-copy">
+            <p class="eyebrow">Undergraduate Researcher · Multimodal AI · ML Systems</p>
+            <h1>Building reliable multimodal intelligence across video, safety, retrieval, and systems.</h1>
+            <p class="hero-text">
+              I am Haopeng Jin, an undergraduate student at Beijing University of Posts and
+              Telecommunications. My work spans multimodal understanding, long-video retrieval,
+              model post-training, AI safety, and training infrastructure.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#research">View Research</a>
+              <a class="button secondary" href="https://github.com/Sunbeam23333" target="_blank" rel="noreferrer">
+                GitHub
+              </a>
+            </div>
+            <div class="signal-row" aria-label="Research focus">
+              <span>Video Understanding</span>
+              <span>AI Safety</span>
+              <span>Embedding & Retrieval</span>
+              <span>Training Infra</span>
+            </div>
+          </div>
+          <aside class="hero-card" aria-label="Profile summary">
+            <div class="portrait-wrap">
+              <img src="assets/profile-placeholder.png" alt="Temporary profile portrait for Haopeng Jin" />
+            </div>
+            <div class="profile-card-copy">
+              <h2>Haopeng Jin</h2>
+              <p>Tencent · Researcher</p>
+            </div>
+          </aside>
+        </section>
+
+        <section id="about" class="section split-section">
+          <div>
+            <p class="eyebrow">About</p>
+            <h2>Research-driven engineering, grounded in real systems.</h2>
+          </div>
+          <div class="prose">
+            <p>
+              My recent work focuses on turning frontier model ideas into measurable systems:
+              video search that works under open-world user memories, distillation pipelines for
+              video and world models, multimodal embedding pre-training, and post-training
+              pipelines for content safety.
+            </p>
+            <p>
+              I am especially interested in the intersection of <strong>multimodal foundation
+              models</strong>, <strong>retrieval and recommendation</strong>, and
+              <strong>efficient model training</strong>. I enjoy problems where the research
+              question, data construction, evaluation protocol, and engineering path must be
+              designed together. I am currently an EECS undergraduate at BUPT.
+            </p>
+          </div>
+        </section>
+
+        <section id="research" class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Selected Research</p>
+            <h2>Projects and manuscripts</h2>
+          </div>
+          <div class="feature-grid">
+            <article class="feature-card highlight">
+              <div class="card-kicker">Recommendation · Molecular Representation</div>
+              <h3>FMASH: Multiscale Symptom-Herb Association Fusion</h3>
+              <p>
+                A traditional Chinese medicine formula recommendation framework that combines
+                symptom-herb heterogeneous graphs, molecular-level herb representations, missing
+                feature completion, and ordered prescription generation.
+              </p>
+              <ul>
+                <li>Uses GCN for local graph structure and BiMamba for long-range node dependency.</li>
+                <li>Integrates UniMol molecular embeddings with herb attributes through attention and gating.</li>
+                <li>Improves top-K precision, recall, and F1 over prior baselines on TCM-PD.</li>
+              </ul>
+              <div class="card-links">
+                <a href="https://arxiv.org/abs/2503.05167" target="_blank" rel="noreferrer">arXiv paper</a>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="card-kicker">Open-World Video Search</div>
+              <h3>ShotFinder / RVMS-Bench / RACLO</h3>
+              <p>
+                Open-domain video search and real-world video memory retrieval, designed for
+                fuzzy user memories instead of clean closed-pool captions.
+              </p>
+              <div class="card-links">
+                <a href="https://arxiv.org/abs/2601.23232" target="_blank" rel="noreferrer">ShotFinder paper</a>
+                <a href="https://arxiv.org/abs/2602.10159" target="_blank" rel="noreferrer">RVMS paper</a>
+                <a href="https://huggingface.co/datasets/tencent/RVMS-Bench" target="_blank" rel="noreferrer">
+                  RVMS-Bench
+                </a>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="card-kicker">Long Video Understanding</div>
+              <h3>Himmel-VLM / Dopamine 2.0</h3>
+              <p>
+                Motion-aware long-video understanding with explicit motion tokens, streaming
+                memory, and step-aware long-term memory for process-level reasoning.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="card-kicker">Distillation Systems</div>
+              <h3>WorldDistill</h3>
+              <p>
+                A unified distillation framework for video generation and world models, covering
+                model cataloging, teacher-student runtime, cache-aware supervision, few-step
+                distillation, streaming, consistency, and context forcing.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="card-kicker">Omni-modal Pre-training</div>
+              <h3>Omni-Embedding</h3>
+              <p>
+                Full-modality embedding pre-training built on text, image, video, audio, ASR,
+                OCR, and video summary signals, connecting omni-modal representation learning to
+                retrieval, reranking, and recommendation systems.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="card-kicker">Image Editing Evaluation</div>
+              <h3>Omni IIE Bench / VDE Bench</h3>
+              <p>
+                Evaluation-oriented work for instruction-guided image editing, emphasizing global
+                image quality, regional fidelity, and instruction compliance.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="card-kicker">Industrial LLM / VLM Iteration</div>
+              <h3>AwemeLM / AwemeVL Safety Models</h3>
+              <p>
+                Iterated moderation-oriented LLM and VLM models at ByteDance, including
+                AwemeLM-style text reasoning and AwemeVL-style visual safety understanding, with
+                SFT/RL data formats, evaluation, and deployment-oriented model updates.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="projects" class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Engineering Portfolio</p>
+            <h2>Applied projects</h2>
+          </div>
+          <div class="project-list">
+            <article>
+              <span class="index">01</span>
+              <div>
+                <h3>LLM Safety RAG and Moderation Post-Training</h3>
+                <p>
+                  Built retrieval-augmented moderation pipelines and iterated AwemeLM/AwemeVL
+                  safety model updates, covering SFT/RL post-training formats, structured safety
+                  decisions, high-recall precision, and fast policy iteration.
+                </p>
+              </div>
+            </article>
+            <article>
+              <span class="index">02</span>
+              <div>
+                <h3>Training Infrastructure: VeRL, MindSpeed, Llama-Factory</h3>
+                <p>
+                  Adapted SFT/RL training templates, multi-GPU workflows, and standardized data
+                  interfaces to make model training more reproducible and reusable.
+                </p>
+              </div>
+            </article>
+            <article>
+              <span class="index">03</span>
+              <div>
+                <h3>Autonomous Driving Perception Deployment</h3>
+                <p>
+                  Worked on model quantization, optimization, and deployment testing in the PKU
+                  VDIG autonomous driving perception stack using OpenMMLab tooling.
+                </p>
+              </div>
+            </article>
+            <article>
+              <span class="index">04</span>
+              <div>
+                <h3>GraphRAG and Domain Knowledge Systems</h3>
+                <p>
+                  Applied GraphRAG-style knowledge construction to internal document and domain
+                  knowledge retrieval tasks, with an emphasis on practical deployment constraints.
+                </p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="experience" class="section timeline-section">
+          <div class="section-heading">
+            <p class="eyebrow">Experience</p>
+            <h2>Research and industry timeline</h2>
+          </div>
+          <div class="timeline">
+            <article>
+              <time>2025.10 - Present</time>
+              <h3>Tencent · Qingyun Program</h3>
+              <p>Large-model safety, multimodal understanding, AI search, and recommendation-related research.</p>
+            </article>
+            <article>
+              <time>2025.02 - 2025.09</time>
+              <h3>ByteDance · LLM Safety</h3>
+              <p>Model post-training, evaluation, AI infrastructure, and applied moderation systems.</p>
+            </article>
+            <article>
+              <time>2025.07 - 2025.09</time>
+              <h3>Tsinghua University · HCI Research</h3>
+              <p>Prototype development for multimodal interaction, mobile systems, and sensing-based research.</p>
+            </article>
+            <article>
+              <time>2024.07 - 2025.07</time>
+              <h3>Peking University VDIG · Autonomous Driving Perception</h3>
+              <p>Quantization, optimization, and deployment evaluation for perception models.</p>
+            </article>
+            <article>
+              <time>2023 - Present</time>
+              <h3>Beijing University of Posts and Telecommunications</h3>
+              <p>B.Eng. candidate, Electronic Information Engineering & Management.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section writing-section">
+          <div class="section-heading">
+            <p class="eyebrow">Notes</p>
+            <h2>Design references for this homepage</h2>
+          </div>
+          <div class="note-grid">
+            <a href="https://manchery.github.io/" target="_blank" rel="noreferrer">
+              Academic homepage structure
+            </a>
+            <a href="https://yaobaiwei.github.io/" target="_blank" rel="noreferrer">
+              Research and systems portfolio style
+            </a>
+            <a href="https://seed.bytedance.com/zh/seedearlycareer" target="_blank" rel="noreferrer">
+              Frontier AI talent narrative
+            </a>
+            <a href="https://openai.com/index/model-disproves-discrete-geometry-conjecture/" target="_blank" rel="noreferrer">
+              Editorial research storytelling
+            </a>
+          </div>
+        </section>
+
+        <section id="contact" class="section contact">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2>Open to research collaborations and internship conversations.</h2>
+          </div>
+          <div class="contact-links">
+            <a href="https://github.com/Sunbeam23333" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://huggingface.co/datasets/tencent/RVMS-Bench" target="_blank" rel="noreferrer">
+              Hugging Face Dataset
+            </a>
+            <a href="mailto:Meiqin1shengtui@126.com">Email</a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>© <span id="year"></span> Haopeng Jin. Built for GitHub Pages.</p>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

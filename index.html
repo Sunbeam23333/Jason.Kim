@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Haopeng Jin's personal academic homepage: multimodal AI, video understanding, model post-training, AI safety, and ML systems."
+      content="Haopeng Jin's personal academic homepage: multimodal AI, pre-training, modality alignment, VLA, video understanding, AI safety, and ML systems."
     />
     <title>Haopeng Jin | Multimodal AI & ML Systems</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -45,21 +45,32 @@
       <main id="top">
         <section class="hero section">
           <div class="hero-copy">
-            <p class="eyebrow">Undergraduate Researcher · Multimodal AI · ML Systems</p>
+            <p class="eyebrow">Tencent Researcher · Multimodal Pre-training · VLA · ML Systems</p>
             <h1>Building reliable multimodal intelligence across video, safety, retrieval, and systems.</h1>
             <p class="hero-text">
               I am Haopeng Jin, an undergraduate student at Beijing University of Posts and
-              Telecommunications. My work spans multimodal understanding, long-video retrieval,
-              model post-training, AI safety, and training infrastructure.
+              Telecommunications. My work spans omni-modal pre-training and modality alignment,
+              long-video understanding, VLA and robotics, retrieval, AI safety, and training
+              infrastructure.
             </p>
             <div class="hero-actions">
               <a class="button primary" href="#research">View Research</a>
               <a class="button secondary" href="https://github.com/Sunbeam23333" target="_blank" rel="noreferrer">
                 GitHub
               </a>
+              <a
+                class="button secondary scholar-button"
+                href="https://scholar.google.com/citations?hl=en&user=7NUo_ykAAAAJ"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Google Scholar
+              </a>
             </div>
             <div class="signal-row" aria-label="Research focus">
               <span>Video Understanding</span>
+              <span>Pre-training & Modality Alignment</span>
+              <span>VLA / Robotics</span>
               <span>AI Safety</span>
               <span>Embedding & Retrieval</span>
               <span>Training Infra</span>
@@ -84,16 +95,17 @@
           <div class="prose">
             <p>
               My recent work focuses on turning frontier model ideas into measurable systems:
-              video search that works under open-world user memories, distillation pipelines for
-              video and world models, multimodal embedding pre-training, and post-training
-              pipelines for content safety.
+              omni-modal pre-training and modality alignment, video search under open-world user
+              memories, VLA-inspired long-horizon understanding, distillation pipelines for video
+              and world models, and post-training pipelines for content safety.
             </p>
             <p>
               I am especially interested in the intersection of <strong>multimodal foundation
-              models</strong>, <strong>retrieval and recommendation</strong>, and
-              <strong>efficient model training</strong>. I enjoy problems where the research
-              question, data construction, evaluation protocol, and engineering path must be
-              designed together. I am currently an EECS undergraduate at BUPT.
+              models</strong>, <strong>VLA / embodied intelligence</strong>,
+              <strong>retrieval and recommendation</strong>, and <strong>efficient model
+              training</strong>. I enjoy problems where pre-training data, modality alignment,
+              evaluation protocol, and engineering path must be designed together. I am currently
+              an EECS undergraduate at BUPT.
             </p>
           </div>
         </section>
@@ -106,7 +118,11 @@
           <div class="feature-grid">
             <article class="feature-card highlight">
               <div class="card-kicker">Recommendation · Molecular Representation</div>
-              <h3>FMASH: Multiscale Symptom-Herb Association Fusion</h3>
+              <h3>
+                <a class="title-link" href="https://arxiv.org/abs/2503.05167" target="_blank" rel="noreferrer">
+                  FMASH: Multiscale Symptom-Herb Association Fusion
+                </a>
+              </h3>
               <p>
                 A traditional Chinese medicine formula recommendation framework that combines
                 symptom-herb heterogeneous graphs, molecular-level herb representations, missing
@@ -124,7 +140,11 @@
 
             <article class="feature-card">
               <div class="card-kicker">Open-World Video Search</div>
-              <h3>ShotFinder / RVMS-Bench / RACLO</h3>
+              <h3>
+                <a class="title-link" href="https://arxiv.org/abs/2602.10159" target="_blank" rel="noreferrer">
+                  ShotFinder / RVMS-Bench / RACLO
+                </a>
+              </h3>
               <p>
                 Open-domain video search and real-world video memory retrieval, designed for
                 fuzzy user memories instead of clean closed-pool captions.
@@ -140,21 +160,37 @@
 
             <article class="feature-card">
               <div class="card-kicker">Long Video Understanding</div>
-              <h3>Himmel-VLM / Dopamine 2.0</h3>
+              <h3>
+                <a class="title-link" href="https://arxiv.org/abs/2605.08158" target="_blank" rel="noreferrer">
+                  HY-Himmel / Dopamine 2.0
+                </a>
+              </h3>
               <p>
-                Motion-aware long-video understanding with explicit motion tokens, streaming
-                memory, and step-aware long-term memory for process-level reasoning.
+                Hierarchical interleaved multi-stream motion encoding for long-video understanding,
+                with compressed-domain motion vectors, residual maps, I-frame context, and
+                step-aware memory for process-level reasoning.
               </p>
+              <div class="card-links">
+                <a href="https://arxiv.org/abs/2605.08158" target="_blank" rel="noreferrer">HY-Himmel paper</a>
+              </div>
             </article>
 
             <article class="feature-card">
               <div class="card-kicker">Distillation Systems</div>
-              <h3>WorldDistill</h3>
+              <h3>
+                <a class="title-link" href="https://github.com/Sunbeam23333/WorldDistill" target="_blank" rel="noreferrer">
+                  WorldDistill
+                </a>
+              </h3>
               <p>
                 A unified distillation framework for video generation and world models, covering
-                model cataloging, teacher-student runtime, cache-aware supervision, few-step
-                distillation, streaming, consistency, and context forcing.
+                model cataloging, multimodal inference, teacher-student runtime, cache-aware
+                supervision, few-step distillation, stream distillation, consistency, and context
+                forcing.
               </p>
+              <div class="card-links">
+                <a href="https://github.com/Sunbeam23333/WorldDistill" target="_blank" rel="noreferrer">Code</a>
+              </div>
             </article>
 
             <article class="feature-card">
@@ -169,16 +205,71 @@
 
             <article class="feature-card">
               <div class="card-kicker">Image Editing Evaluation</div>
-              <h3>Omni IIE Bench / VDE Bench</h3>
+              <h3>
+                <a
+                  class="title-link"
+                  href="https://openaccess.thecvf.com/content/CVPR2026/html/Yang_Omni_IIE_Bench_Benchmarking_the_Practical_Capabilities_of_Image_Editing_CVPR_2026_paper.html"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Omni IIE Bench / VDE Bench
+                </a>
+              </h3>
               <p>
                 Evaluation-oriented work for instruction-guided image editing, emphasizing global
                 image quality, regional fidelity, and instruction compliance.
               </p>
+              <div class="card-links">
+                <a
+                  href="https://openaccess.thecvf.com/content/CVPR2026/html/Yang_Omni_IIE_Bench_Benchmarking_the_Practical_Capabilities_of_Image_Editing_CVPR_2026_paper.html"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  CVPR 2026
+                </a>
+              </div>
             </article>
 
             <article class="feature-card">
+              <div class="card-kicker">VLA · Robotics Reward Modeling</div>
+              <h3>
+                <a class="title-link" href="https://robo-dopamine.github.io/" target="_blank" rel="noreferrer">
+                  Robo-Dopamine / VLA Process Reward
+                </a>
+              </h3>
+              <p>
+                VLA-related process reward modeling for robotic manipulation, centered on
+                step-aware progress understanding, multi-view reward fusion, and policy-invariant
+                reward shaping.
+              </p>
+              <div class="card-links">
+                <a href="https://robo-dopamine.github.io/" target="_blank" rel="noreferrer">Project page</a>
+                <a href="https://arxiv.org/abs/2512.23703" target="_blank" rel="noreferrer">arXiv paper</a>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="card-kicker">Memory-centric Video Generation</div>
+              <h3>
+                <a
+                  class="title-link"
+                  href="https://www.researchgate.net/profile/Haopeng-Jin/publication/404366111_StreamDiT_Memory-Centric_Inference_for_Minute-Scale_Video_Generation_via_Layer_Streaming_from_Host_Memory_and_Context-Parallel_Denoising_on_Commodity_Multi-GPU_Nodes/links/69f585e832a2ba2b2d564340/StreamDiT-Memory-Centric-Inference-for-Minute-Scale-Video-Generation-via-Layer-Streaming-from-Host-Memory-and-Context-Parallel-Denoising-on-Commodity-Multi-GPU-Nodes.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  StreamDiT
+                </a>
+              </h3>
+              <p>
+                Memory-centric inference for minute-scale video generation, exploring layer
+                streaming from host memory and context-parallel denoising on commodity multi-GPU
+                nodes.
+              </p>
+            </article>
+
+            <article id="awemelm" class="feature-card">
               <div class="card-kicker">Industrial LLM / VLM Iteration</div>
-              <h3>AwemeLM / AwemeVL Safety Models</h3>
+              <h3><a class="title-link" href="#awemelm">AwemeLM / AwemeVL Safety Models</a></h3>
               <p>
                 Iterated moderation-oriented LLM and VLM models at ByteDance, including
                 AwemeLM-style text reasoning and AwemeVL-style visual safety understanding, with
@@ -191,47 +282,65 @@
         <section id="projects" class="section">
           <div class="section-heading">
             <p class="eyebrow">Engineering Portfolio</p>
-            <h2>Applied projects</h2>
+            <h2>Pre-training, infra, and applied systems</h2>
           </div>
           <div class="project-list">
             <article>
               <span class="index">01</span>
               <div>
-                <h3>LLM Safety RAG and Moderation Post-Training</h3>
+                <h3>Omni-modal Pre-training and Modality Alignment</h3>
                 <p>
-                  Built retrieval-augmented moderation pipelines and iterated AwemeLM/AwemeVL
-                  safety model updates, covering SFT/RL post-training formats, structured safety
-                  decisions, high-recall precision, and fast policy iteration.
+                  Built data and training recipes for text-image-video-audio embedding, including
+                  video summaries, ASR/OCR enrichment, hard negative mining, hierarchical batch
+                  sampling, and retrieval/reranking-oriented contrastive objectives.
                 </p>
               </div>
             </article>
             <article>
               <span class="index">02</span>
               <div>
-                <h3>Training Infrastructure: VeRL, MindSpeed, Llama-Factory</h3>
+                <h3>WorldDistill / StreamDiT Training and Inference Infrastructure</h3>
                 <p>
-                  Adapted SFT/RL training templates, multi-GPU workflows, and standardized data
-                  interfaces to make model training more reproducible and reusable.
+                  Developed distillation and inference infrastructure for video generation and
+                  world models, including unified model catalogs, teacher-student runtime,
+                  cache-aware supervision, distributed training, layer streaming, and
+                  context-parallel denoising.
                 </p>
+                <div class="project-links">
+                  <a href="https://github.com/Sunbeam23333/WorldDistill" target="_blank" rel="noreferrer">WorldDistill code</a>
+                  <a
+                    href="https://www.researchgate.net/profile/Haopeng-Jin/publication/404366111_StreamDiT_Memory-Centric_Inference_for_Minute-Scale_Video_Generation_via_Layer_Streaming_from_Host_Memory_and_Context-Parallel_Denoising_on_Commodity_Multi-GPU_Nodes/links/69f585e832a2ba2b2d564340/StreamDiT-Memory-Centric-Inference-for-Minute-Scale-Video-Generation-via-Layer-Streaming-from-Host-Memory-and-Context-Parallel-Denoising-on-Commodity-Multi-GPU-Nodes.pdf"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    StreamDiT
+                  </a>
+                </div>
               </div>
             </article>
             <article>
               <span class="index">03</span>
               <div>
-                <h3>Autonomous Driving Perception Deployment</h3>
+                <h3>VLA, Long-video Understanding, and Robotics Reward Modeling</h3>
                 <p>
-                  Worked on model quantization, optimization, and deployment testing in the PKU
-                  VDIG autonomous driving perception stack using OpenMMLab tooling.
+                  Connected long-video motion encoding with VLA-style process understanding:
+                  HY-Himmel focuses on compressed-domain motion tokens, while Robo-Dopamine
+                  provides a robotics reward-modeling view of step-aware progress estimation.
                 </p>
+                <div class="project-links">
+                  <a href="https://arxiv.org/abs/2605.08158" target="_blank" rel="noreferrer">HY-Himmel</a>
+                  <a href="https://robo-dopamine.github.io/" target="_blank" rel="noreferrer">Robo-Dopamine</a>
+                </div>
               </div>
             </article>
             <article>
               <span class="index">04</span>
               <div>
-                <h3>GraphRAG and Domain Knowledge Systems</h3>
+                <h3>AwemeLM / AwemeVL Safety Iteration and RAG Systems</h3>
                 <p>
-                  Applied GraphRAG-style knowledge construction to internal document and domain
-                  knowledge retrieval tasks, with an emphasis on practical deployment constraints.
+                  Built retrieval-augmented moderation pipelines and iterated AwemeLM/AwemeVL
+                  safety model updates, covering SFT/RL data formats, structured safety decisions,
+                  high-recall precision, policy updates, and deployment-oriented model evaluation.
                 </p>
               </div>
             </article>
@@ -247,7 +356,7 @@
             <article>
               <time>2025.10 - Present</time>
               <h3>Tencent · Qingyun Program</h3>
-              <p>Large-model safety, multimodal understanding, AI search, and recommendation-related research.</p>
+              <p>Multimodal pre-training, VLA/long-video understanding, AI search, embedding, and model systems.</p>
             </article>
             <article>
               <time>2025.02 - 2025.09</time>
@@ -290,6 +399,9 @@
             <a href="https://openai.com/index/model-disproves-discrete-geometry-conjecture/" target="_blank" rel="noreferrer">
               Editorial research storytelling
             </a>
+            <a href="https://scholar.google.com/citations?hl=en&user=7NUo_ykAAAAJ" target="_blank" rel="noreferrer">
+              Haopeng Jin on Google Scholar
+            </a>
           </div>
         </section>
 
@@ -299,7 +411,13 @@
             <h2>Open to research collaborations and internship conversations.</h2>
           </div>
           <div class="contact-links">
+            <a href="https://scholar.google.com/citations?hl=en&user=7NUo_ykAAAAJ" target="_blank" rel="noreferrer">
+              Google Scholar
+            </a>
             <a href="https://github.com/Sunbeam23333" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://github.com/Sunbeam23333/WorldDistill" target="_blank" rel="noreferrer">
+              WorldDistill Code
+            </a>
             <a href="https://huggingface.co/datasets/tencent/RVMS-Bench" target="_blank" rel="noreferrer">
               Hugging Face Dataset
             </a>

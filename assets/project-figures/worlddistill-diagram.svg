@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">WorldDistill system diagram</title>
+  <desc id="desc">A flow from model catalog to teacher-student runtime, distillation methods, and accelerated inference.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fffaf1"/>
+      <stop offset="1" stop-color="#e8f3ed"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" x2="1">
+      <stop offset="0" stop-color="#e9efff"/>
+      <stop offset="1" stop-color="#e9fff8"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="420" rx="34" fill="url(#bg)"/>
+  <text x="48" y="62" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800" fill="#171717">WorldDistill</text>
+  <text x="48" y="94" font-family="Inter, Arial, sans-serif" font-size="15" fill="#6f6b62">Unified distillation and train-infer metadata for video and world models</text>
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(54 150)">
+      <rect width="170" height="105" rx="22" fill="url(#card)" stroke="#d8d2c4"/>
+      <text x="22" y="40" font-size="17" font-weight="800" fill="#171717">Model Catalog</text>
+      <text x="22" y="70" font-size="13" fill="#6f6b62">tasks, I/O, teachers</text>
+    </g>
+    <g transform="translate(282 150)">
+      <rect width="180" height="105" rx="22" fill="url(#card)" stroke="#d8d2c4"/>
+      <text x="22" y="40" font-size="17" font-weight="800" fill="#171717">Runtime</text>
+      <text x="22" y="70" font-size="13" fill="#6f6b62">teacher-student cache</text>
+    </g>
+    <g transform="translate(520 150)">
+      <rect width="180" height="105" rx="22" fill="url(#card)" stroke="#d8d2c4"/>
+      <text x="22" y="40" font-size="17" font-weight="800" fill="#171717">Distillation</text>
+      <text x="22" y="70" font-size="13" fill="#6f6b62">step, stream, consistency</text>
+    </g>
+    <g transform="translate(758 150)">
+      <rect width="150" height="105" rx="22" fill="url(#card)" stroke="#d8d2c4"/>
+      <text x="22" y="40" font-size="17" font-weight="800" fill="#171717">Serving</text>
+      <text x="22" y="70" font-size="13" fill="#6f6b62">few-step inference</text>
+    </g>
+    <path d="M232 202h42M470 202h42M708 202h42" stroke="#2457ff" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -37,6 +37,10 @@
             <span>SFT / GRPO / DAPO / RAG</span>
             <span>Training & Inference Infra</span>
           </div>
+          <figure class="detail-figure">
+            <img src="../assets/project-figures/performance-review.png" alt="Safety model performance review preview" />
+            <figcaption>Local review deck preview used only as structural source material for this public-safe page.</figcaption>
+          </figure>
         </section>
 
         <section class="detail-section">
@@ -87,9 +91,20 @@
             <li>Scale exploration: small, medium, and large backbones for different serving budgets.</li>
             <li>Deployment path: Embedding + MLP for lower serving cost and faster business iteration.</li>
           </ul>
-          <div class="formula-box">ITC(video, comment): align comments with their source video and contrast against non-matching videos.
-SCL(group_i, group_j): supervised contrastive learning over semantically related comment/video groups.
-Classifier head: embedding -> MLP -> safety task logits.</div>
+          <div class="equation-stack">
+            <div class="equation">
+              <code>ITC(video, comment): video_i ↔ comment_i, video_i ↮ comment_j</code>
+              <span>Align comments with the source video and contrast against non-matching videos.</span>
+            </div>
+            <div class="equation">
+              <code>SCL(group_i, group_j): y_i = y_j as positive, y_i ≠ y_j as negative</code>
+              <span>Supervised contrastive learning over policy-related comment/video groups.</span>
+            </div>
+            <div class="equation">
+              <code>decision = MLP(TransformerFusion(video, video_text, comment_text))</code>
+              <span>Embedding + MLP keeps deployment lightweight while retaining multimodal evidence.</span>
+            </div>
+          </div>
           <figure class="detail-figure">
             <img src="../assets/comment-pretrain-onepage.png" alt="Comment multimodal pre-training onepage" />
             <figcaption>Internal onepage source rendered for local review. Public copy is summarized and sanitized.</figcaption>
@@ -151,6 +166,16 @@ Classifier head: embedding -> MLP -> safety task logits.</div>
             <li>Modeling trade-off: answer-first vs reasoning-first outputs, response length control, and truncation robustness.</li>
             <li>Evaluation focus: stability across safety domains, high-recall moderation, and deployable decision formats.</li>
           </ul>
+          <div class="detail-grid">
+            <figure class="detail-figure">
+              <img src="../assets/project-figures/awemelm-policy-rl.png" alt="AwemeLM policy RL PDF preview" />
+              <figcaption>Four-stage policy RL notes preview, summarized and sanitized for public display.</figcaption>
+            </figure>
+            <figure class="detail-figure">
+              <img src="../assets/project-figures/awemelm-rl-paradigm.png" alt="Moderation RL paradigm PDF preview" />
+              <figcaption>Moderation RL paradigm notes preview, with sensitive examples omitted from page copy.</figcaption>
+            </figure>
+          </div>
         </section>
 
         <section class="detail-grid">
@@ -162,6 +187,12 @@ Classifier head: embedding -> MLP -> safety task logits.</div>
               <li>Use reward components for answer correctness and format compliance.</li>
               <li>Test SFT-to-GRPO, direct RL, and hybrid SFT/RL schedules under the same evaluation setup.</li>
             </ul>
+            <div class="equation-stack">
+              <div class="equation">
+                <code>R = R_format + R_answer - λ · KL(π || π_ref)</code>
+                <span>Reward decomposes format stability, answer correctness, and policy regularization.</span>
+              </div>
+            </div>
           </section>
           <section class="detail-section">
             <h2>AwemeVL Layer</h2>
@@ -172,6 +203,19 @@ Classifier head: embedding -> MLP -> safety task logits.</div>
               <li>Public presentation intentionally avoids sensitive visual policy taxonomies and internal metrics.</li>
             </ul>
           </section>
+        </section>
+
+        <section class="detail-section">
+          <h2>Train-Infer Tooling</h2>
+          <p>
+            The implementation work also involved repeatable SFT/RL tooling: a shared data schema,
+            model-specific templates, and evaluation scripts that make moderation experiments
+            comparable across scenarios.
+          </p>
+          <figure class="detail-figure">
+            <img src="../assets/project-figures/verl-sft-guide.png" alt="VeRL SFT guide PDF preview" />
+            <figcaption>Training guide preview rendered from the local PDF.</figcaption>
+          </figure>
         </section>
 
         <section class="detail-section">

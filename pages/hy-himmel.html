@@ -24,6 +24,10 @@
             <span>Residual Maps</span>
             <span>Step Memory</span>
           </div>
+          <figure class="detail-figure">
+            <img src="../assets/project-figures/hy-himmel-paper.png" alt="HY-Himmel paper first page preview" />
+            <figcaption>HY-Himmel public PDF preview.</figcaption>
+          </figure>
         </section>
         <section class="detail-section">
           <h2>Idea</h2>
@@ -32,6 +36,18 @@
             temporal progress rather than static visual recognition. HY-Himmel uses compressed-domain
             signals and hierarchical memory to preserve motion cues efficiently.
           </p>
+          <div class="method-flow">
+            <span>I-frame Context</span>
+            <span>Motion Vectors</span>
+            <span>Residual Maps</span>
+            <span>Step-aware Memory</span>
+          </div>
+          <div class="equation-stack">
+            <div class="equation">
+              <code>z_t = Fuse(I_t, MV_t, R_t, M_{t-1})</code>
+              <span>Each timestep fuses appearance, compressed-domain motion, residual change, and historical memory.</span>
+            </div>
+          </div>
         </section>
         <section class="detail-grid">
           <section class="detail-section">

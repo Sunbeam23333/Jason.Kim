@@ -24,6 +24,10 @@
             <span>Regional Fidelity</span>
             <span>Global Quality</span>
           </div>
+          <figure class="detail-figure">
+            <img src="../assets/project-figures/omni-iie-diagram.svg" alt="Omni IIE evaluation diagram" />
+            <figcaption>Evaluation structure diagram for instruction-guided image editing.</figcaption>
+          </figure>
         </section>
         <section class="detail-section">
           <h2>Evaluation Gap</h2>
@@ -32,6 +36,18 @@
             changes. A good benchmark should therefore evaluate global image quality, local edit
             fidelity, and instruction compliance together.
           </p>
+          <div class="method-flow">
+            <span>Instruction</span>
+            <span>Edited Region</span>
+            <span>Unedited Context</span>
+            <span>Final Score</span>
+          </div>
+          <div class="equation-stack">
+            <div class="equation">
+              <code>S_total = α · S_instruction + β · S_region + γ · S_global</code>
+              <span>Practical editing evaluation balances compliance, local fidelity, and whole-image quality.</span>
+            </div>
+          </div>
         </section>
         <section class="detail-grid">
           <section class="detail-section">

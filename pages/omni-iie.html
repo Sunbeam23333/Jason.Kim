@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Omni IIE Bench / VDE Bench | Haopeng Jin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="aurora-bg" aria-hidden="true"><span class="aurora-beam beam-three"></span></div>
+    <div class="site-shell">
+      <main class="detail-main">
+        <section class="detail-hero">
+          <a class="back-link" href="../index.html#research">← Back to homepage</a>
+          <p class="eyebrow">Image Editing Evaluation · Benchmarking · Multimodal Assessment</p>
+          <h1>Omni IIE Bench / VDE Bench</h1>
+          <p class="detail-lead">Evaluation-oriented work for instruction-guided image editing and visual detail editing, with attention to practical model capability rather than only isolated visual quality.</p>
+          <div class="detail-meta">
+            <a href="https://openaccess.thecvf.com/content/CVPR2026/html/Yang_Omni_IIE_Bench_Benchmarking_the_Practical_Capabilities_of_Image_Editing_CVPR_2026_paper.html" target="_blank" rel="noreferrer">CVPR 2026</a>
+            <span>Instruction Following</span>
+            <span>Regional Fidelity</span>
+            <span>Global Quality</span>
+          </div>
+        </section>
+        <section class="detail-section">
+          <h2>Evaluation Gap</h2>
+          <p>
+            Image editing systems need to preserve the original content while applying targeted
+            changes. A good benchmark should therefore evaluate global image quality, local edit
+            fidelity, and instruction compliance together.
+          </p>
+        </section>
+        <section class="detail-grid">
+          <section class="detail-section">
+            <h2>Dimensions</h2>
+            <ul>
+              <li>Whether the requested region or attribute is actually changed.</li>
+              <li>Whether unrelated areas remain stable.</li>
+              <li>Whether the final image is visually plausible and semantically consistent.</li>
+            </ul>
+          </section>
+          <section class="detail-section">
+            <h2>Why It Connects</h2>
+            <ul>
+              <li>Benchmarks guide post-training and model selection.</li>
+              <li>Fine-grained evaluation helps compare foundation editing models.</li>
+              <li>It complements retrieval and multimodal pre-training work with evaluation design.</li>
+            </ul>
+          </section>
+        </section>
+      </main>
+      <footer class="footer"><p>© <span id="year"></span> Haopeng Jin.</p></footer>
+    </div>
+    <script src="../script.js"></script>
+  </body>
+</html>

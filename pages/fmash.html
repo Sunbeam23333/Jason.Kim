@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FMASH | Haopeng Jin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="aurora-bg" aria-hidden="true"><span class="aurora-beam beam-two"></span></div>
+    <div class="site-shell">
+      <main class="detail-main">
+        <section class="detail-hero">
+          <a class="back-link" href="../index.html#research">← Back to homepage</a>
+          <p class="eyebrow">Recommendation · Molecular Representation · Graph Learning</p>
+          <h1>FMASH: Multiscale Symptom-Herb Association Fusion</h1>
+          <p class="detail-lead">A TCM formula recommendation framework that fuses symptom-herb graphs, molecular herb representations, missing-feature completion, and ordered prescription generation.</p>
+          <div class="detail-meta">
+            <a href="https://arxiv.org/abs/2503.05167" target="_blank" rel="noreferrer">arXiv Paper</a>
+            <span>GCN</span>
+            <span>BiMamba</span>
+            <span>UniMol</span>
+          </div>
+        </section>
+        <section class="detail-section">
+          <h2>Method</h2>
+          <p>
+            FMASH models prescription generation as a multiscale representation problem. Symptom
+            and herb nodes capture clinical associations, while molecule-level herb embeddings
+            inject chemical structure information that traditional recommendation pipelines often
+            miss.
+          </p>
+        </section>
+        <section class="detail-grid">
+          <section class="detail-section">
+            <h2>Representation</h2>
+            <ul>
+              <li>GCN captures local heterogeneous graph structure.</li>
+              <li>BiMamba models long-range node dependency and sequence-level context.</li>
+              <li>UniMol-derived molecular embeddings enrich herb representation.</li>
+            </ul>
+          </section>
+          <section class="detail-section">
+            <h2>Output</h2>
+            <ul>
+              <li>Top-K recommendation quality for prescription candidates.</li>
+              <li>Missing feature completion for sparse symptom/herb attributes.</li>
+              <li>Ordered prescription generation rather than unordered set prediction.</li>
+            </ul>
+          </section>
+        </section>
+      </main>
+      <footer class="footer"><p>© <span id="year"></span> Haopeng Jin.</p></footer>
+    </div>
+    <script src="../script.js"></script>
+  </body>
+</html>

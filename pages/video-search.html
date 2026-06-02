@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ShotFinder / RVMS-Bench / RACLO | Haopeng Jin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="aurora-bg" aria-hidden="true"><span class="aurora-beam beam-one"></span></div>
+    <div class="site-shell">
+      <main class="detail-main">
+        <section class="detail-hero">
+          <a class="back-link" href="../index.html#research">← Back to homepage</a>
+          <p class="eyebrow">Open-world Video Search · Real-world Memory Retrieval</p>
+          <h1>ShotFinder / RVMS-Bench / RACLO</h1>
+          <p class="detail-lead">A research line for retrieving videos from fuzzy, open-world user memories instead of clean closed-pool captions.</p>
+          <div class="detail-meta">
+            <a href="https://arxiv.org/abs/2601.23232" target="_blank" rel="noreferrer">ShotFinder Paper</a>
+            <a href="https://arxiv.org/abs/2602.10159" target="_blank" rel="noreferrer">RVMS Paper</a>
+            <a href="https://huggingface.co/datasets/tencent/RVMS-Bench" target="_blank" rel="noreferrer">Dataset</a>
+          </div>
+        </section>
+        <section class="detail-section">
+          <h2>Motivation</h2>
+          <p>
+            Most video retrieval benchmarks assume a clean text query and a fixed candidate pool.
+            Real users search from memory: they remember partial scenes, ambiguous actions, rough
+            time, visual style, or a social context. This project reframes retrieval around that
+            mismatch.
+          </p>
+        </section>
+        <section class="detail-grid">
+          <section class="detail-section">
+            <h2>Benchmark Design</h2>
+            <ul>
+              <li>Memory-like queries with incomplete visual and temporal information.</li>
+              <li>Large candidate pools with distractors that are semantically close.</li>
+              <li>Evaluation focused on recall, ranking quality, and robustness to fuzzy language.</li>
+            </ul>
+          </section>
+          <section class="detail-section">
+            <h2>Retrieval Pipeline</h2>
+            <ul>
+              <li>Video/text embedding for first-stage recall.</li>
+              <li>Reranking with stronger multimodal evidence.</li>
+              <li>Reasoning over events, objects, scene transitions, and user-memory clues.</li>
+            </ul>
+          </section>
+        </section>
+      </main>
+      <footer class="footer"><p>© <span id="year"></span> Haopeng Jin.</p></footer>
+    </div>
+    <script src="../script.js"></script>
+  </body>
+</html>

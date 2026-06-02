@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Robo-Dopamine / VLA Process Reward | Haopeng Jin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="aurora-bg" aria-hidden="true"><span class="aurora-beam beam-three"></span></div>
+    <div class="site-shell">
+      <main class="detail-main">
+        <section class="detail-hero">
+          <a class="back-link" href="../index.html#research">← Back to homepage</a>
+          <p class="eyebrow">VLA · Robotics · Process Reward Modeling</p>
+          <h1>Robo-Dopamine / VLA Process Reward</h1>
+          <p class="detail-lead">A VLA-related reward-modeling view of robotic manipulation, focused on step-aware progress and multi-view evidence fusion.</p>
+          <div class="detail-meta">
+            <a href="https://robo-dopamine.github.io/" target="_blank" rel="noreferrer">Project Page</a>
+            <a href="https://arxiv.org/abs/2512.23703" target="_blank" rel="noreferrer">Paper</a>
+            <span>Process Reward</span>
+            <span>Policy-invariant Shaping</span>
+          </div>
+        </section>
+        <section class="detail-section">
+          <h2>Research Framing</h2>
+          <p>
+            In robotic manipulation, a final success signal is often too sparse. Process reward
+            modeling provides dense supervision by judging whether intermediate states move the
+            robot closer to task completion.
+          </p>
+        </section>
+        <section class="detail-grid">
+          <section class="detail-section">
+            <h2>Model Signals</h2>
+            <ul>
+              <li>Multi-view visual observations.</li>
+              <li>Language instructions and subgoal descriptions.</li>
+              <li>Step-level progress and failure modes.</li>
+            </ul>
+          </section>
+          <section class="detail-section">
+            <h2>System Role</h2>
+            <ul>
+              <li>Reward scoring for rollout analysis.</li>
+              <li>Shaping signals for policy optimization.</li>
+              <li>Evaluation of long-horizon robotic task progress.</li>
+            </ul>
+          </section>
+        </section>
+      </main>
+      <footer class="footer"><p>© <span id="year"></span> Haopeng Jin.</p></footer>
+    </div>
+    <script src="../script.js"></script>
+  </body>
+</html>

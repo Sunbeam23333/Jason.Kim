@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WorldDistill | Haopeng Jin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="aurora-bg" aria-hidden="true"><span class="aurora-beam beam-one"></span><span class="aurora-beam beam-three"></span></div>
+    <div class="site-shell">
+      <main class="detail-main">
+        <section class="detail-hero">
+          <a class="back-link" href="../index.html#research">← Back to homepage</a>
+          <p class="eyebrow">Video Generation · World Models · Distillation Infra</p>
+          <h1>WorldDistill</h1>
+          <p class="detail-lead">
+            A unified toolkit for distilling and accelerating video, image, audio-video generation
+            models and interactive world models.
+          </p>
+          <div class="detail-meta">
+            <a href="https://github.com/Sunbeam23333/WorldDistill" target="_blank" rel="noreferrer">🐱 GitHub Code</a>
+            <span>Step / Stream / Progressive / Consistency</span>
+            <span>Context Forcing</span>
+            <span>Train-Infer Metadata</span>
+          </div>
+        </section>
+
+        <section class="detail-section">
+          <h2>System Goal</h2>
+          <p>
+            WorldDistill is designed to turn model-specific distillation recipes into a reusable
+            platform. It unifies model cataloging, training presets, teacher-student runtime,
+            inference metadata, and distributed acceleration for video and world models.
+          </p>
+        </section>
+
+        <section class="detail-grid">
+          <section class="detail-section">
+            <h2>Core Modules</h2>
+            <ul>
+              <li>Model catalog for architectures, tasks, modality I/O, and teacher-student pairing.</li>
+              <li>TeacherStudentRuntime with cache, fused supervision, and experiment tracking.</li>
+              <li>LightX2V-based multimodal inference pipeline for video/image/audio-video tasks.</li>
+              <li>DDP/FSDP/DeepSpeed, sequence parallelism, checkpointing, and mixed precision.</li>
+            </ul>
+          </section>
+          <section class="detail-section">
+            <h2>Distillation Methods</h2>
+            <ul>
+              <li>Step distillation for 2/4/8-step students.</li>
+              <li>Stream distillation / Diffusion Forcing for long videos.</li>
+              <li>Consistency distillation with EMA target and Huber loss.</li>
+              <li>Context forcing for memory-aware world-model rollouts.</li>
+            </ul>
+          </section>
+        </section>
+
+        <section class="detail-section">
+          <h2>Formula View</h2>
+          <p>
+            The common abstraction is flow/velocity prediction along a noise-to-data trajectory,
+            which makes few-step distillation and consistency training easier to unify.
+          </p>
+          <div class="formula-box">x_t = (1 - sigma) x_0 + sigma * epsilon
+x_0 = x_t - sigma * v_theta(x_t, t)
+4-step update: x_{t-1} = x_t + delta_t * v_theta(x_t, t)</div>
+        </section>
+
+        <section class="detail-section">
+          <h2>Engineering Value</h2>
+          <p>
+            The main value is not a single loss function, but converting video/world-model
+            distillation into a maintainable engineering asset: new models and new distillation
+            methods can be registered without rewriting the whole pipeline.
+          </p>
+        </section>
+      </main>
+      <footer class="footer"><p>© <span id="year"></span> Haopeng Jin.</p></footer>
+    </div>
+    <script src="../script.js"></script>
+  </body>
+</html>

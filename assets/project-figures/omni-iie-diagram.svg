@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">Omni IIE evaluation diagram</title>
+  <desc id="desc">A diagram showing instruction, image edit, regional fidelity, global quality, and instruction compliance.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fffaf1"/>
+      <stop offset="1" stop-color="#f0fff9"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="420" rx="34" fill="url(#bg)"/>
+  <text x="48" y="64" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800" fill="#171717">Omni IIE Bench</text>
+  <text x="48" y="96" font-family="Inter, Arial, sans-serif" font-size="15" fill="#6f6b62">Practical evaluation for instruction-guided image editing</text>
+  <g font-family="Inter, Arial, sans-serif">
+    <rect x="62" y="150" width="185" height="122" rx="24" fill="#ffffff" stroke="#d8d2c4"/>
+    <text x="94" y="202" font-size="17" font-weight="800" fill="#171717">Instruction</text>
+    <text x="94" y="232" font-size="13" fill="#6f6b62">what should change</text>
+    <rect x="302" y="150" width="185" height="122" rx="24" fill="#e9efff" stroke="#bfcaff"/>
+    <text x="338" y="202" font-size="17" font-weight="800" fill="#171717">Edited Image</text>
+    <text x="338" y="232" font-size="13" fill="#6f6b62">model output</text>
+    <rect x="548" y="126" width="150" height="82" rx="20" fill="#fff0d9" stroke="#f2d1a7"/>
+    <text x="577" y="174" font-size="15" font-weight="800" fill="#171717">Region</text>
+    <rect x="548" y="238" width="150" height="82" rx="20" fill="#e9fff8" stroke="#b7eadc"/>
+    <text x="580" y="286" font-size="15" font-weight="800" fill="#171717">Global</text>
+    <rect x="748" y="182" width="150" height="82" rx="20" fill="#f4ebff" stroke="#dcc8ff"/>
+    <text x="773" y="230" font-size="15" font-weight="800" fill="#171717">Compliance</text>
+  </g>
+  <path d="M252 211h42M492 211h44M704 167c38 10 42 42 42 56M704 279c38-10 42-42 42-56" stroke="#2457ff" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>

@@ -24,6 +24,10 @@
             <span>BiMamba</span>
             <span>UniMol</span>
           </div>
+          <figure class="detail-figure">
+            <img src="../assets/project-figures/fmash-paper.png" alt="FMASH paper first page preview" />
+            <figcaption>Paper preview rendered from the public arXiv PDF.</figcaption>
+          </figure>
         </section>
         <section class="detail-section">
           <h2>Method</h2>
@@ -33,6 +37,22 @@
             inject chemical structure information that traditional recommendation pipelines often
             miss.
           </p>
+          <div class="method-flow">
+            <span>Symptom-Herb Graph</span>
+            <span>GCN Local Encoding</span>
+            <span>UniMol Herb Features</span>
+            <span>Ordered Formula Generation</span>
+          </div>
+          <div class="equation-stack">
+            <div class="equation">
+              <code>H_graph = GCN(A_symptom-herb, X_node)</code>
+              <span>Local heterogeneous graph propagation over symptoms and herbs.</span>
+            </div>
+            <div class="equation">
+              <code>H_fused = Gate(H_graph, H_molecule)</code>
+              <span>Molecular representations are fused with graph-side clinical evidence.</span>
+            </div>
+          </div>
         </section>
         <section class="detail-grid">
           <section class="detail-section">

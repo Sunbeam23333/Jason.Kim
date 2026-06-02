@@ -23,6 +23,16 @@
             <a href="https://arxiv.org/abs/2602.10159" target="_blank" rel="noreferrer">RVMS Paper</a>
             <a href="https://huggingface.co/datasets/tencent/RVMS-Bench" target="_blank" rel="noreferrer">Dataset</a>
           </div>
+          <div class="detail-grid">
+            <figure class="detail-figure">
+              <img src="../assets/project-figures/shotfinder-paper.png" alt="ShotFinder paper first page preview" />
+              <figcaption>ShotFinder public PDF preview.</figcaption>
+            </figure>
+            <figure class="detail-figure">
+              <img src="../assets/project-figures/rvms-paper.png" alt="RVMS-Bench paper first page preview" />
+              <figcaption>RVMS-Bench public PDF preview.</figcaption>
+            </figure>
+          </div>
         </section>
         <section class="detail-section">
           <h2>Motivation</h2>
@@ -32,6 +42,18 @@
             time, visual style, or a social context. This project reframes retrieval around that
             mismatch.
           </p>
+          <div class="method-flow">
+            <span>Fuzzy Memory Query</span>
+            <span>First-stage Recall</span>
+            <span>Multimodal Reranking</span>
+            <span>Evidence-grounded Result</span>
+          </div>
+          <div class="equation-stack">
+            <div class="equation">
+              <code>score(q, v) = sim(E_text(q), E_video(v)) + rerank(q, frames, events)</code>
+              <span>Combines embedding recall with a stronger reranker over visual and temporal evidence.</span>
+            </div>
+          </div>
         </section>
         <section class="detail-grid">
           <section class="detail-section">

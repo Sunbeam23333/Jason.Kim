@@ -30,6 +30,16 @@
             <span>Hierarchical Batch Sampler</span>
             <span>Deduplicated InfoNCE</span>
           </div>
+          <div class="detail-grid">
+            <figure class="detail-figure">
+              <img src="../assets/project-figures/omni-embedding-overview.png" alt="Omni-Embedding PDF preview" />
+              <figcaption>Omni-Embedding design notes preview rendered from the local PDF.</figcaption>
+            </figure>
+            <figure class="detail-figure">
+              <img src="../assets/project-figures/omni-embedding-gains.png" alt="Omni-Embedding training and gains PDF preview" />
+              <figcaption>Training and benefit notes preview rendered from the local PDF.</figcaption>
+            </figure>
+          </div>
         </section>
 
         <section class="detail-section">
@@ -94,10 +104,20 @@
             only the loss itself, but controlling false negatives and batch composition so that
             semantically close samples are not incorrectly pushed apart.
           </p>
-          <div class="formula-box">L = -log exp(sim(q, k+) / tau) / sum_j exp(sim(q, k_j) / tau)
-Bidirectional InfoNCE: optimize query -> key and key -> query retrieval.
-Deduplicated InfoNCE: remove negatives whose source or target modality similarity exceeds a threshold.
-Distributed negatives: all-gather embeddings across GPUs to enlarge the negative pool.</div>
+          <div class="equation-stack">
+            <div class="equation">
+              <code>L(q, k+) = -log exp(sim(q, k+) / τ) / Σ_j exp(sim(q, k_j) / τ)</code>
+              <span>Contrastive alignment between a query and its positive document.</span>
+            </div>
+            <div class="equation">
+              <code>L_bi = L(q → k) + L(k → q)</code>
+              <span>Bidirectional InfoNCE optimizes both retrieval directions.</span>
+            </div>
+            <div class="equation">
+              <code>N_valid = {k_j | sim_source(j) &lt; θ and sim_target(j) &lt; θ}</code>
+              <span>Deduplicated negatives reduce false-negative pressure in dense multimodal batches.</span>
+            </div>
+          </div>
         </section>
 
         <section class="detail-grid">
@@ -135,7 +155,12 @@ Distributed negatives: all-gather embeddings across GPUs to enlarge the negative
             dimension/quality trade-off for production ANN indexes.
           </p>
           <div class="card-links">
-            <a href="https://scholar.google.com/citations?hl=en&user=7NUo_ykAAAAJ" target="_blank" rel="noreferrer">🎓 Google Scholar</a>
+            <a href="https://scholar.google.com/citations?hl=en&user=7NUo_ykAAAAJ" target="_blank" rel="noreferrer">
+              <span class="google-wordmark" aria-label="Google">
+                <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
+              </span>
+              <span class="scholar-word"> Scholar</span>
+            </a>
           </div>
         </section>
       </main>

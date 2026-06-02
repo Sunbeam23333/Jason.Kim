@@ -24,6 +24,10 @@
             <span>Context Parallelism</span>
             <span>Commodity Multi-GPU</span>
           </div>
+          <figure class="detail-figure">
+            <img src="../assets/project-figures/streamdit-diagram.svg" alt="StreamDiT memory-centric inference diagram" />
+            <figcaption>Method diagram. The linked ResearchGate PDF blocked automated preview extraction.</figcaption>
+          </figure>
         </section>
         <section class="detail-section">
           <h2>Problem</h2>
@@ -32,6 +36,18 @@
             and context length beyond what a single GPU can comfortably serve. StreamDiT treats
             memory as the core bottleneck and designs inference around it.
           </p>
+          <div class="method-flow">
+            <span>Host-memory Layers</span>
+            <span>GPU Residency Window</span>
+            <span>Context-parallel Denoising</span>
+            <span>Minute-scale Video</span>
+          </div>
+          <div class="equation-stack">
+            <div class="equation">
+              <code>M_peak ≈ M_active_layers + M_activation_window + M_context_shard</code>
+              <span>Peak memory is controlled by streaming layer residency and splitting temporal context.</span>
+            </div>
+          </div>
         </section>
         <section class="detail-grid">
           <section class="detail-section">

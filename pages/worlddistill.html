@@ -22,11 +22,22 @@
             models and interactive world models.
           </p>
           <div class="detail-meta">
-            <a href="https://github.com/Sunbeam23333/WorldDistill" target="_blank" rel="noreferrer">🐱 GitHub Code</a>
+            <a href="https://github.com/Sunbeam23333/WorldDistill" target="_blank" rel="noreferrer">
+              <svg class="social-icon github-icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.52 7.52 0 0 1 8 3.86c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"
+                />
+              </svg>
+              GitHub Code
+            </a>
             <span>Step / Stream / Progressive / Consistency</span>
             <span>Context Forcing</span>
             <span>Train-Infer Metadata</span>
           </div>
+          <figure class="detail-figure">
+            <img src="../assets/project-figures/worlddistill-diagram.svg" alt="WorldDistill system diagram" />
+            <figcaption>Project structure diagram for the WorldDistill toolkit.</figcaption>
+          </figure>
         </section>
 
         <section class="detail-section">
@@ -36,6 +47,12 @@
             platform. It unifies model cataloging, training presets, teacher-student runtime,
             inference metadata, and distributed acceleration for video and world models.
           </p>
+          <div class="method-flow">
+            <span>Model Catalog</span>
+            <span>Teacher Runtime</span>
+            <span>Distillation Recipe</span>
+            <span>Few-step Inference</span>
+          </div>
         </section>
 
         <section class="detail-grid">
@@ -65,9 +82,20 @@
             The common abstraction is flow/velocity prediction along a noise-to-data trajectory,
             which makes few-step distillation and consistency training easier to unify.
           </p>
-          <div class="formula-box">x_t = (1 - sigma) x_0 + sigma * epsilon
-x_0 = x_t - sigma * v_theta(x_t, t)
-4-step update: x_{t-1} = x_t + delta_t * v_theta(x_t, t)</div>
+          <div class="equation-stack">
+            <div class="equation">
+              <code>x_t = (1 - σ) · x_0 + σ · ε</code>
+              <span>Flow-matching style interpolation between clean data and noise.</span>
+            </div>
+            <div class="equation">
+              <code>x_0 = x_t - σ · v_θ(x_t, t)</code>
+              <span>Recover clean prediction from the student velocity field.</span>
+            </div>
+            <div class="equation">
+              <code>x_{t-1} = x_t + Δt · v_θ(x_t, t)</code>
+              <span>Few-step update used by distilled video/world-model students.</span>
+            </div>
+          </div>
         </section>
 
         <section class="detail-section">

@@ -24,6 +24,10 @@
             <span>Process Reward</span>
             <span>Policy-invariant Shaping</span>
           </div>
+          <figure class="detail-figure">
+            <img src="../assets/project-figures/robo-dopamine-paper.png" alt="Robo-Dopamine paper first page preview" />
+            <figcaption>Robo-Dopamine public PDF preview.</figcaption>
+          </figure>
         </section>
         <section class="detail-section">
           <h2>Research Framing</h2>
@@ -32,6 +36,18 @@
             modeling provides dense supervision by judging whether intermediate states move the
             robot closer to task completion.
           </p>
+          <div class="method-flow">
+            <span>Instruction</span>
+            <span>Multi-view Observation</span>
+            <span>Progress Reward</span>
+            <span>Policy Shaping</span>
+          </div>
+          <div class="equation-stack">
+            <div class="equation">
+              <code>R_process(s_t, a_t, g) = Φ(s_{t+1}, g) - Φ(s_t, g)</code>
+              <span>Potential-based process reward estimates progress toward the language goal.</span>
+            </div>
+          </div>
         </section>
         <section class="detail-grid">
           <section class="detail-section">

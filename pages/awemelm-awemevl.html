@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AwemeLM / AwemeVL Safety Models | Haopeng Jin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="aurora-bg" aria-hidden="true">
+      <span class="aurora-beam beam-one"></span>
+      <span class="aurora-beam beam-two"></span>
+      <span class="aurora-beam beam-three"></span>
+    </div>
+    <div class="site-shell">
+      <main class="detail-main">
+        <section class="detail-hero">
+          <a class="back-link" href="../index.html#research">← Back to homepage</a>
+          <p class="eyebrow">ByteDance · Safety Foundation Models · Pre-training + Post-training</p>
+          <h1>AwemeLM / AwemeVL Safety Models</h1>
+          <p class="detail-lead">
+            A public-safe summary of my ByteDance safety-model work: moderation-oriented LLM/VLM
+            iteration, comment multimodal pre-training, RAG-enhanced policy retrieval, and
+            standardized post-training workflows.
+          </p>
+          <div class="detail-meta">
+            <span>LLM / VLM Safety</span>
+            <span>UniCLIP-cmt</span>
+            <span>Comment Multimodal Pre-training</span>
+            <span>Embedding + MLP</span>
+            <span>SFT / GRPO / DAPO / RAG</span>
+            <span>Training & Inference Infra</span>
+          </div>
+        </section>
+
+        <section class="detail-section">
+          <h2>Background</h2>
+          <p>
+            Content safety is not a single-label classification problem. A real moderation system
+            needs to combine policy understanding, multimodal evidence, high-recall retrieval,
+            structured decision outputs, and fast iteration when standards change. My work centered
+            on turning these requirements into trainable foundation-model workflows.
+          </p>
+          <p>
+            I worked on AwemeLM-style text reasoning models and AwemeVL-style visual safety models.
+            The goal was to move beyond isolated classifiers toward reusable safety foundation
+            models that can support multiple downstream moderation scenarios.
+          </p>
+        </section>
+
+        <section class="detail-section">
+          <h2>Foundation-model Context</h2>
+          <p>
+            The project sits inside a broader shift in foundation models: from larger dense
+            Transformers toward MoE scaling, long-context memory efficiency, native or modular
+            multimodal modeling, and reasoning-focused post-training. Public reports from Llama,
+            DeepSeek, Qwen, Hunyuan, Gemini, Seed, and other model families point to the same
+            engineering pattern: data quality, structured post-training, and train/infer efficiency
+            often matter as much as raw parameter count.
+          </p>
+          <ul>
+            <li>Pre-training: high-quality filtering, deduplication, multilingual/multimodal curation, and task-balanced data.</li>
+            <li>Post-training: SFT followed by preference or reinforcement optimization such as RLHF, DPO, PPO, GRPO, or related recipes.</li>
+            <li>Multimodal systems: either native omni models or encoder-adapter-LLM pipelines with dedicated visual/audio modules.</li>
+            <li>Efficiency: GQA/MLA/KV-cache reduction, MoE routing, and training/inference memory planning.</li>
+          </ul>
+        </section>
+
+        <section class="detail-section">
+          <h2>Comment Multimodal Pre-training</h2>
+          <p>
+            The comment pre-training line explored a UniCLIP-cmt style base model for comment
+            safety. The model consumes video frames, video-side text signals such as title/OCR/ASR,
+            and comment text, then fuses them through a multimodal encoder and Transformer fusion
+            module before downstream classification heads.
+          </p>
+          <ul>
+            <li>Input modalities: video image features, video text features, and comment text.</li>
+            <li>Architecture: multimodal encoders + Transformer fusion + MLP task head.</li>
+            <li>Training recipe: unsupervised contrastive pre-training followed by supervised pre-training/SFT.</li>
+            <li>Scale exploration: small, medium, and large backbones for different serving budgets.</li>
+            <li>Deployment path: Embedding + MLP for lower serving cost and faster business iteration.</li>
+          </ul>
+          <div class="formula-box">ITC(video, comment): align comments with their source video and contrast against non-matching videos.
+SCL(group_i, group_j): supervised contrastive learning over semantically related comment/video groups.
+Classifier head: embedding -> MLP -> safety task logits.</div>
+          <figure class="detail-figure">
+            <img src="../assets/comment-pretrain-onepage.png" alt="Comment multimodal pre-training onepage" />
+            <figcaption>Internal onepage source rendered for local review. Public copy is summarized and sanitized.</figcaption>
+          </figure>
+        </section>
+
+        <section class="detail-grid">
+          <section class="detail-section">
+            <h2>Data Engineering</h2>
+            <ul>
+              <li>Collected text-review and image-review benchmark data for safety scenarios.</li>
+              <li>Packaged large-scale multimodal samples into parquet-style datasets.</li>
+              <li>Added video-side features, comment features, group embeddings, and CV features.</li>
+              <li>Used distributed data pipelines to support high-throughput preprocessing.</li>
+              <li>Mapped policy rules to training examples while filtering empty or invalid records.</li>
+              <li>Supported both full-parameter fine-tuning and frozen-backbone MLP-only adaptation.</li>
+            </ul>
+          </section>
+          <section class="detail-section">
+            <h2>Post-training</h2>
+            <ul>
+              <li>Explored structured SFT formats for moderation reasoning and final decisions.</li>
+              <li>Compared thinking/no-thinking formats under latency and stability constraints.</li>
+              <li>Investigated RL-style policy optimization with task-specific reward functions.</li>
+              <li>Connected policy retrieval, RAG, and model outputs for faster standard updates.</li>
+              <li>Compared answer-first, reasoning-first, and direct yes/no response formats.</li>
+            </ul>
+          </section>
+        </section>
+
+        <section class="detail-section">
+          <h2>Pre-training Tasks and Scale</h2>
+          <p>
+            UniCLIP-cmt used two complementary stages. The first stage aligned video/comment
+            evidence with unsupervised ITC-style contrastive tasks; the second stage added
+            supervised contrastive learning and classification objectives for moderation categories.
+          </p>
+          <ul>
+            <li>ITC tasks: single comment to source video, violation comment to source video, and aggregated penalized-comment groups to source video.</li>
+            <li>SCL tasks: same policy category or same update reason as positives, different categories as negatives.</li>
+            <li>Classification tasks: binary and multi-class safety decisions on top of the fused embedding.</li>
+            <li>Scale-up path: small deployment-friendly models, larger frozen-backbone models, and later exploration toward billion-parameter tiers.</li>
+            <li>Evaluation: max-F1 under full fine-tuning and MLP-only adaptation, plus few-shot evaluation across multiple safety domains.</li>
+          </ul>
+        </section>
+
+        <section class="detail-section">
+          <h2>AwemeLM6 Moderation Iteration</h2>
+          <p>
+            For the AwemeLM6 moderation line, the main work was to standardize data production and
+            post-training experiments across live, comment, short-video, and article-like scenarios.
+            The public-safe abstraction is a model-iteration loop: extract multimodal evidence,
+            attach policy context when appropriate, generate structured instruction data, train SFT
+            variants, and test RL variants with stable reward templates.
+          </p>
+          <ul>
+            <li>Instruction formats: PA, PAR, PRA, policy-aware, no-policy, implicit-policy, think, no-think, and auto-think variants.</li>
+            <li>Training stacks: MindSpeed-style SFT and open-verl-style GRPO / DAPO experiments.</li>
+            <li>Modeling trade-off: answer-first vs reasoning-first outputs, response length control, and truncation robustness.</li>
+            <li>Evaluation focus: stability across safety domains, high-recall moderation, and deployable decision formats.</li>
+          </ul>
+        </section>
+
+        <section class="detail-grid">
+          <section class="detail-section">
+            <h2>SFT / RL Loop</h2>
+            <ul>
+              <li>Start with policy-aware SFT to make moderation outputs structured and stable.</li>
+              <li>Convert training data into shared Parquet schemas for SFT and RL experiments.</li>
+              <li>Use reward components for answer correctness and format compliance.</li>
+              <li>Test SFT-to-GRPO, direct RL, and hybrid SFT/RL schedules under the same evaluation setup.</li>
+            </ul>
+          </section>
+          <section class="detail-section">
+            <h2>AwemeVL Layer</h2>
+            <ul>
+              <li>Visual safety understanding for frame-level and video-level risk evidence.</li>
+              <li>VLM outputs integrated with text-side AwemeLM reasoning when visual context matters.</li>
+              <li>Serving path emphasized lightweight validation, RPC-style integration, and review tooling.</li>
+              <li>Public presentation intentionally avoids sensitive visual policy taxonomies and internal metrics.</li>
+            </ul>
+          </section>
+        </section>
+
+        <section class="detail-section">
+          <h2>System View</h2>
+          <p>
+            The broader H1 work connected several lines: AwemeLM moderation models, VLM safety
+            models, RAG for policy/case retrieval, VeRL-based training templates, and workflow
+            automation. I would summarize the work as: build a safety model stack that can be
+            trained, evaluated, deployed, and updated as business policy evolves.
+          </p>
+          <figure class="detail-figure">
+            <img src="../assets/douyin-h1-overview.png" alt="ByteDance 2025 H1 project overview" />
+            <figcaption>H1 overview image used as local source material for structuring this public summary.</figcaption>
+          </figure>
+        </section>
+
+        <section class="detail-section">
+          <h2>Public-safe Takeaways</h2>
+          <ul>
+            <li>Pre-training matters when the target domain has specialized multimodal signals.</li>
+            <li>Post-training must co-design output format, reward signal, and latency constraints.</li>
+            <li>Embedding + lightweight heads can be a strong serving trade-off for safety tasks.</li>
+            <li>RAG helps policy iteration when standards and examples change quickly.</li>
+            <li>Public pages should omit internal paths, API keys, full policy taxonomies, raw examples, and unreleased business metrics.</li>
+          </ul>
+        </section>
+      </main>
+      <footer class="footer">
+        <p>© <span id="year"></span> Haopeng Jin.</p>
+      </footer>
+    </div>
+    <script src="../script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>StreamDiT | Haopeng Jin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="aurora-bg" aria-hidden="true"><span class="aurora-beam beam-one"></span></div>
+    <div class="site-shell">
+      <main class="detail-main">
+        <section class="detail-hero">
+          <a class="back-link" href="../index.html#research">← Back to homepage</a>
+          <p class="eyebrow">Memory-centric Inference · Video Generation · Train-Infer Infra</p>
+          <h1>StreamDiT</h1>
+          <p class="detail-lead">Memory-centric inference for minute-scale video generation via layer streaming from host memory and context-parallel denoising.</p>
+          <div class="detail-meta">
+            <a href="https://www.researchgate.net/profile/Haopeng-Jin/publication/404366111_StreamDiT_Memory-Centric_Inference_for_Minute-Scale_Video_Generation_via_Layer_Streaming_from_Host_Memory_and_Context-Parallel_Denoising_on_Commodity_Multi-GPU_Nodes/links/69f585e832a2ba2b2d564340/StreamDiT-Memory-Centric-Inference-for-Minute-Scale-Video-Generation-via-Layer-Streaming-from-Host-Memory-and-Context-Parallel-Denoising-on-Commodity-Multi-GPU-Nodes.pdf" target="_blank" rel="noreferrer">PDF</a>
+            <span>Layer Streaming</span>
+            <span>Context Parallelism</span>
+            <span>Commodity Multi-GPU</span>
+          </div>
+        </section>
+        <section class="detail-section">
+          <h2>Problem</h2>
+          <p>
+            Minute-scale video generation pushes activation memory, KV/cache memory, model weights,
+            and context length beyond what a single GPU can comfortably serve. StreamDiT treats
+            memory as the core bottleneck and designs inference around it.
+          </p>
+        </section>
+        <section class="detail-grid">
+          <section class="detail-section">
+            <h2>Approach</h2>
+            <ul>
+              <li>Stream model layers from host memory to reduce peak GPU residency.</li>
+              <li>Use context-parallel denoising to distribute long temporal contexts.</li>
+              <li>Preserve generation quality while targeting practical commodity nodes.</li>
+            </ul>
+          </section>
+          <section class="detail-section">
+            <h2>Portfolio Value</h2>
+            <ul>
+              <li>Connects model architecture with serving memory planning.</li>
+              <li>Complements WorldDistill's training/inference abstraction.</li>
+              <li>Highlights train-infer infra experience for video generation systems.</li>
+            </ul>
+          </section>
+        </section>
+      </main>
+      <footer class="footer"><p>© <span id="year"></span> Haopeng Jin.</p></footer>
+    </div>
+    <script src="../script.js"></script>
+  </body>
+</html>

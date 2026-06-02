@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Omni-Embedding | Haopeng Jin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="aurora-bg" aria-hidden="true"><span class="aurora-beam beam-one"></span><span class="aurora-beam beam-two"></span></div>
+    <div class="site-shell">
+      <main class="detail-main">
+        <section class="detail-hero">
+          <a class="back-link" href="../index.html#research">← Back to homepage</a>
+          <p class="eyebrow">Omni-modal Pre-training · Modality Alignment · Retrieval</p>
+          <h1>Omni-Embedding</h1>
+          <p class="detail-lead">
+            A full-modality representation learning project for aligning text, image, video, audio,
+            ASR/OCR, and video summaries into a shared embedding space for retrieval, reranking,
+            recommendation, and content understanding.
+          </p>
+          <div class="detail-meta">
+            <span>Text / Image / Video / Audio</span>
+            <span>Qwen2.5-Omni Backbone</span>
+            <span>Bidirectional InfoNCE</span>
+            <span>Hard Negatives</span>
+            <span>Hierarchical Batch Sampler</span>
+            <span>Deduplicated InfoNCE</span>
+          </div>
+        </section>
+
+        <section class="detail-section">
+          <h2>Problem</h2>
+          <p>
+            Industrial multimodal systems rarely receive clean single-modality input. A video item
+            may contain frames, speech, OCR, title, comments, topic metadata, and user-intent
+            signals. Omni-Embedding focuses on turning these heterogeneous signals into a shared
+            representation space that supports cross-modal retrieval and downstream recommendation.
+          </p>
+          <p>
+            The project is positioned as an omni-modal pre-training task rather than a narrow
+            retrieval feature. It explores one backbone for text, image, video, and audio, then
+            adapts the learned space to recall, reranking, generative retrieval, and cold-start
+            recommendation.
+          </p>
+        </section>
+
+        <section class="detail-grid">
+          <section class="detail-section">
+            <h2>Data Construction</h2>
+            <ul>
+              <li>Video to summary + ASR + OCR semantic descriptions.</li>
+              <li>Text-video, video-video, video-audio, and item-to-item pairs.</li>
+              <li>Near-duplicate, same-event, same-topic, and segment-level video pairs.</li>
+              <li>Hard negatives mined by embedding models and refined with stronger MLLMs.</li>
+              <li>Recommendation-style chains such as item-to-item and query-plus-item-to-item tasks.</li>
+            </ul>
+          </section>
+          <section class="detail-section">
+            <h2>Training Recipe</h2>
+            <ul>
+              <li>Multi-stage pre-training from general multimodal data to high-quality task data.</li>
+              <li>Hierarchical batch sampling by modality combination, task, domain, and subcategory.</li>
+              <li>Deduplicated contrastive loss to reduce false negatives inside a batch.</li>
+              <li>Task-homogeneous batches so different modality/task types are not mixed in one batch.</li>
+              <li>Model soups / merging for robust checkpoint selection without extra inference cost.</li>
+            </ul>
+          </section>
+        </section>
+
+        <section class="detail-section">
+          <h2>Architecture</h2>
+          <p>
+            The implementation notes use an omni-capable MLLM backbone, with the Qwen2.5-Omni
+            Thinker path as the embedding base. Instead of stitching separate modality towers after
+            the fact, modality features are substituted into the language stream and the final hidden
+            state is projected into a shared embedding space.
+          </p>
+          <ul>
+            <li>Base model: Qwen2.5-Omni-style multimodal backbone.</li>
+            <li>Embedding head: final-layer last-token representation, optionally adapted by PCA for compact serving dimensions.</li>
+            <li>Optimization: freeze selected encoders when useful, then tune attention/MLP paths with lightweight adapters.</li>
+            <li>Efficiency: dimension choices such as 1024-d, 256-d, and 64-d trade retrieval quality for index and serving cost.</li>
+          </ul>
+        </section>
+
+        <section class="detail-section">
+          <h2>Key Objective</h2>
+          <p>
+            The core training objective is a contrastive alignment loss. The practical trick is not
+            only the loss itself, but controlling false negatives and batch composition so that
+            semantically close samples are not incorrectly pushed apart.
+          </p>
+          <div class="formula-box">L = -log exp(sim(q, k+) / tau) / sum_j exp(sim(q, k_j) / tau)
+Bidirectional InfoNCE: optimize query -> key and key -> query retrieval.
+Deduplicated InfoNCE: remove negatives whose source or target modality similarity exceeds a threshold.
+Distributed negatives: all-gather embeddings across GPUs to enlarge the negative pool.</div>
+        </section>
+
+        <section class="detail-grid">
+          <section class="detail-section">
+            <h2>Task Matrix</h2>
+            <ul>
+              <li>Text query to video, image, audio, or text document.</li>
+              <li>Video to video via front/back segments, same event, or similar-topic pairs.</li>
+              <li>Video to audio and audio to audio for cross-signal alignment.</li>
+              <li>Item-to-item and query-plus-item retrieval for recommendation-oriented matching.</li>
+            </ul>
+          </section>
+          <section class="detail-section">
+            <h2>Hard Negatives</h2>
+            <ul>
+              <li>Same event with slight visual drift: similar enough to be confusing, not identical.</li>
+              <li>Same subject but different event, verified by embedding filters and MLLM/LLM checks.</li>
+              <li>Tag-overlap near misses for fine-grained semantic discrimination.</li>
+              <li>Segment-order negatives where adjacent clips should rank above distant or random clips.</li>
+            </ul>
+          </section>
+        </section>
+
+        <section class="detail-section">
+          <h2>Why It Matters</h2>
+          <p>
+            This line connects pre-training, retrieval, reranking, and recommendation. It also
+            reflects a systems view: the quality of an embedding model depends on model backbone,
+            multimodal data construction, negative mining, batch sampling, and serving constraints
+            together.
+          </p>
+          <p>
+            Public-safe impact can be summarized directionally: better cold-start semantic recall,
+            complementary recall coverage against legacy semantic channels, and a manageable
+            dimension/quality trade-off for production ANN indexes.
+          </p>
+          <div class="card-links">
+            <a href="https://scholar.google.com/citations?hl=en&user=7NUo_ykAAAAJ" target="_blank" rel="noreferrer">🎓 Google Scholar</a>
+          </div>
+        </section>
+      </main>
+      <footer class="footer"><p>© <span id="year"></span> Haopeng Jin.</p></footer>
+    </div>
+    <script src="../script.js"></script>
+  </body>
+</html>

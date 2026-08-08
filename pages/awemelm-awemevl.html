@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Newsreader:opsz,wght@6..72,500;6..72,700&amp;display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../styles.css" />
@@ -35,11 +35,11 @@
             <span>Comment Multimodal Pre-training</span>
             <span>Embedding + MLP</span>
             <span>SFT / GRPO / DAPO / RAG</span>
-            <span>Training & Inference Infra</span>
+            <span>Training &amp; Inference Infra</span>
           </div>
           <figure class="detail-figure">
-            <img src="../assets/project-figures/performance-review.png" alt="Safety model performance review preview" />
-            <figcaption>Local review deck preview used only as structural source material for this public-safe page.</figcaption>
+            <img src="../assets/project-figures/comment-pretrain-architecture-clean.jpg" alt="UniCLIP-cmt multimodal fusion architecture" />
+            <figcaption>Model architecture diagram extracted from the comment multimodal pre-training onepage.</figcaption>
           </figure>
         </section>
 
@@ -92,23 +92,58 @@
             <li>Deployment path: Embedding + MLP for lower serving cost and faster business iteration.</li>
           </ul>
           <div class="equation-stack">
-            <div class="equation">
-              <code>ITC(video, comment): video_i ↔ comment_i, video_i ↮ comment_j</code>
-              <span>Align comments with the source video and contrast against non-matching videos.</span>
+            <div class="math-block">
+              \[
+              \operatorname{ITC}(v_i,c_i):
+              \quad v_i\leftrightarrow c_i,\qquad
+              v_i\not\leftrightarrow c_j\ \ (j\neq i).
+              \]
             </div>
-            <div class="equation">
-              <code>SCL(group_i, group_j): y_i = y_j as positive, y_i ≠ y_j as negative</code>
-              <span>Supervised contrastive learning over policy-related comment/video groups.</span>
+            <span class="math-caption">Align comments with the source video and contrast against non-matching videos.</span>
+            <div class="math-block">
+              \[
+              \begin{aligned}
+              y_i=y_j
+              &amp;\Rightarrow(i,j)\in\mathcal P,\\
+              y_i\neq y_j
+              &amp;\Rightarrow(i,j)\in\mathcal N.
+              \end{aligned}
+              \]
             </div>
-            <div class="equation">
-              <code>decision = MLP(TransformerFusion(video, video_text, comment_text))</code>
-              <span>Embedding + MLP keeps deployment lightweight while retaining multimodal evidence.</span>
+            <span class="math-caption">Supervised contrastive learning over policy-related comment/video groups.</span>
+            <div class="math-block">
+              \[
+              \hat y=
+              \operatorname{MLP}\!\left(
+              \operatorname{TransformerFusion}(v,t_v,t_c)
+              \right).
+              \]
             </div>
+            <span class="math-caption">Embedding + MLP keeps deployment lightweight while retaining multimodal evidence.</span>
           </div>
           <figure class="detail-figure">
-            <img src="../assets/comment-pretrain-onepage.png" alt="Comment multimodal pre-training onepage" />
-            <figcaption>Internal onepage source rendered for local review. Public copy is summarized and sanitized.</figcaption>
+            <img src="../assets/project-figures/comment-pretrain-architecture-clean.jpg" alt="UniCLIP-cmt multimodal fusion architecture" />
+            <figcaption>Clean architecture diagram extracted from the comment multimodal pre-training PDF.</figcaption>
           </figure>
+        </section>
+
+        <section class="detail-section">
+          <h2>Architecture Variants</h2>
+          <p>
+            The onepage also compares pre-training structures for comment-centered multimodal
+            moderation. The key design is to keep comment text as the main discriminative signal,
+            while injecting video frames and video-side text through a fusion module.
+          </p>
+          <div class="detail-grid">
+            <figure class="detail-figure">
+              <img src="../assets/project-figures/comment-pretrain-stage-one-clean.jpg" alt="Comment multimodal pre-training stage one architecture" />
+              <figcaption>Stage-one architecture diagram from the comment multimodal pre-training onepage.</figcaption>
+            </figure>
+            <figure class="detail-figure">
+              <img src="../assets/project-figures/comment-pretrain-stage-two-clean.jpg" alt="Comment multimodal pre-training stage two architecture" />
+              <figcaption>Stage-two architecture diagram from the comment multimodal pre-training onepage.</figcaption>
+            </figure>
+          </div>
         </section>
 
         <section class="detail-grid">
@@ -149,6 +184,10 @@
             <li>Scale-up path: small deployment-friendly models, larger frozen-backbone models, and later exploration toward billion-parameter tiers.</li>
             <li>Evaluation: max-F1 under full fine-tuning and MLP-only adaptation, plus few-shot evaluation across multiple safety domains.</li>
           </ul>
+          <figure class="detail-figure">
+            <img src="../assets/project-figures/comment-pretrain-tasks-clean.png" alt="Comment pre-training task table" />
+            <figcaption>Task taxonomy extracted from the pre-training onepage and summarized in the text above.</figcaption>
+          </figure>
         </section>
 
         <section class="detail-section">
@@ -168,12 +207,12 @@
           </ul>
           <div class="detail-grid">
             <figure class="detail-figure">
-              <img src="../assets/project-figures/awemelm-policy-rl.png" alt="AwemeLM policy RL PDF preview" />
-              <figcaption>Four-stage policy RL notes preview, summarized and sanitized for public display.</figcaption>
+              <img src="../assets/project-figures/comment-pretrain-stage-one-clean.jpg" alt="Comment pre-training fusion structure" />
+              <figcaption>Fusion structure from the comment multimodal pre-training onepage.</figcaption>
             </figure>
             <figure class="detail-figure">
-              <img src="../assets/project-figures/awemelm-rl-paradigm.png" alt="Moderation RL paradigm PDF preview" />
-              <figcaption>Moderation RL paradigm notes preview, with sensitive examples omitted from page copy.</figcaption>
+              <img src="../assets/project-figures/comment-pretrain-tasks-clean.png" alt="Comment multimodal pre-training task table" />
+              <figcaption>Task table from the same onepage, used as public-safe project evidence.</figcaption>
             </figure>
           </div>
         </section>
@@ -188,10 +227,13 @@
               <li>Test SFT-to-GRPO, direct RL, and hybrid SFT/RL schedules under the same evaluation setup.</li>
             </ul>
             <div class="equation-stack">
-              <div class="equation">
-                <code>R = R_format + R_answer - λ · KL(π || π_ref)</code>
-                <span>Reward decomposes format stability, answer correctness, and policy regularization.</span>
+              <div class="math-block">
+                \[
+                R=R_{\mathrm{format}}+R_{\mathrm{answer}}
+                -\lambda\,D_{\mathrm{KL}}\!\left(\pi\,\|\,\pi_{\mathrm{ref}}\right).
+                \]
               </div>
+              <span class="math-caption">Reward decomposes format stability, answer correctness, and policy regularization.</span>
             </div>
           </section>
           <section class="detail-section">
@@ -213,8 +255,8 @@
             comparable across scenarios.
           </p>
           <figure class="detail-figure">
-            <img src="../assets/project-figures/verl-sft-guide.png" alt="VeRL SFT guide PDF preview" />
-            <figcaption>Training guide preview rendered from the local PDF.</figcaption>
+            <img src="../assets/project-figures/comment-pretrain-stage-two-clean.jpg" alt="Training and inference tooling diagram from comment pre-training onepage" />
+            <figcaption>Second-stage structure from the comment multimodal pre-training onepage.</figcaption>
           </figure>
         </section>
 
@@ -227,8 +269,8 @@
             trained, evaluated, deployed, and updated as business policy evolves.
           </p>
           <figure class="detail-figure">
-            <img src="../assets/douyin-h1-overview.png" alt="ByteDance 2025 H1 project overview" />
-            <figcaption>H1 overview image used as local source material for structuring this public summary.</figcaption>
+            <img src="../assets/project-figures/comment-pretrain-architecture-clean.jpg" alt="Comment multimodal system view" />
+            <figcaption>System view grounded in the comment multimodal pre-training onepage.</figcaption>
           </figure>
         </section>
 

@@ -7,11 +7,11 @@
       name="description"
       content="Haopeng Jin's personal academic homepage: multimodal AI, pre-training, modality alignment, post-training, VLA, video understanding, AI safety, and training/inference systems."
     />
-    <title>Haopeng Jin | Multimodal AI & ML Systems</title>
+    <title>Haopeng Jin | Multimodal AI &amp; ML Systems</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Newsreader:opsz,wght@6..72,500;6..72,700&amp;display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -65,7 +65,7 @@
               </a>
               <a
                 class="button secondary scholar-button"
-                href="https://scholar.google.com/citations?hl=en&user=7NUo_ykAAAAJ"
+                href="https://scholar.google.com/citations?hl=en&amp;user=7NUo_ykAAAAJ"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -77,11 +77,11 @@
             </div>
             <div class="signal-row" aria-label="Research focus">
               <span>Video Understanding</span>
-              <span>Pre-training & Modality Alignment</span>
+              <span>Pre-training &amp; Modality Alignment</span>
               <span>VLA / Robotics</span>
               <span>AI Safety</span>
-              <span>Embedding & Retrieval</span>
-              <span>Training & Inference Infra</span>
+              <span>Embedding &amp; Retrieval</span>
+              <span>Training &amp; Inference Infra</span>
             </div>
           </div>
           <aside class="hero-card" aria-label="Profile summary">
@@ -125,62 +125,166 @@
             <h2>Projects and manuscripts</h2>
           </div>
           <div class="feature-grid">
-            <article id="fmash" class="feature-card highlight">
-              <div class="card-kicker">Recommendation · Molecular Representation</div>
-              <h3>
-                <a class="title-link" href="pages/fmash.html">
-                  FMASH: Multiscale Symptom-Herb Association Fusion
-                </a>
-              </h3>
+            <article id="hy-himmel" class="feature-card highlight has-preview">
+              <img
+                class="card-preview"
+                src="assets/project-figures/hy-himmel-figure1.png"
+                alt="HY-Himmel semantic and compressed-domain motion paths"
+                width="1970"
+                height="1120"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="card-kicker">Technical Report · Long Video Understanding</div>
+              <h3><a class="title-link" href="pages/hy-himmel.html">HY-Himmel Technical Report</a></h3>
               <p>
-                A traditional Chinese medicine formula recommendation framework that combines
-                symptom-herb heterogeneous graphs, molecular-level herb representations, missing
-                feature completion, and ordered prescription generation.
+                A hierarchical long-video MLLM that pairs sparse semantic anchor I-frames with
+                local interleaved RGB, motion-vector, and residual streams for dense temporal
+                coverage at low token cost.
               </p>
               <ul>
-                <li>Uses GCN for local graph structure and BiMamba for long-range node dependency.</li>
-                <li>Integrates UniMol molecular embeddings with herb attributes through attention and gating.</li>
-                <li>Improves top-K precision, recall, and F1 over prior baselines on TCM-PD.</li>
+                <li>First author and Project Lead.</li>
+                <li>63.5 on Video-MME, +2.3 points over the dense 32-frame baseline.</li>
+                <li>Uses 3.6× fewer context tokens through semantic-motion decomposition.</li>
               </ul>
               <div class="card-links">
-                <a href="https://arxiv.org/abs/2503.05167" target="_blank" rel="noreferrer">arXiv paper</a>
+                <a href="pages/hy-himmel.html">Project details</a>
+                <a href="https://arxiv.org/abs/2605.08158" target="_blank" rel="noreferrer">Tech report</a>
               </div>
             </article>
 
-            <article id="video-search" class="feature-card">
-              <div class="card-kicker">Open-World Video Search</div>
-              <h3>
-                <a class="title-link" href="pages/video-search.html">
-                  ShotFinder / RVMS-Bench / RACLO
-                </a>
-              </h3>
+            <article id="robo-dopamine-2" class="feature-card has-preview">
+              <img
+                class="card-preview"
+                src="assets/project-figures/robo-dopamine2-memory-panel.png"
+                alt="Time-ordered temporal memory panel for robot task progress"
+                width="768"
+                height="768"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="card-kicker">Ongoing Research · Process Reward Modeling</div>
+              <h3><a class="title-link" href="pages/vla-robotics.html">Robo-Dopamine 2.0</a></h3>
               <p>
-                Open-domain video search and real-world video memory retrieval, designed for
-                fuzzy user memories instead of clean closed-pool captions.
+                An OOD-aware temporal-memory extension for robotic process reward modeling. It
+                adds compact history panels to static multi-view evidence; for OOD examples, it
+                preserves the perturbed before/after views while reconstructing history from the
+                corresponding successful source trajectory.
               </p>
+              <ul>
+                <li>Ongoing research prototype; final results are not yet published.</li>
+                <li>Built on Robo-Dopamine by Tan et al., without claiming authorship of that paper.</li>
+              </ul>
               <div class="card-links">
-                <a href="https://arxiv.org/abs/2601.23232" target="_blank" rel="noreferrer">ShotFinder paper</a>
-                <a href="https://arxiv.org/abs/2602.10159" target="_blank" rel="noreferrer">RVMS paper</a>
-                <a href="https://huggingface.co/datasets/tencent/RVMS-Bench" target="_blank" rel="noreferrer">
-                  RVMS-Bench
-                </a>
+                <a href="pages/vla-robotics.html">Ongoing project</a>
               </div>
             </article>
 
-            <article id="hy-himmel" class="feature-card">
-              <div class="card-kicker">Long Video Understanding</div>
-              <h3>
-                <a class="title-link" href="pages/hy-himmel.html">
-                  HY-Himmel / Dopamine 2.0
-                </a>
-              </h3>
+            <article id="omni-iie" class="feature-card has-preview">
+              <img
+                class="card-preview"
+                src="assets/project-figures/omni-iie-figure1.png"
+                alt="Omni IIE Bench data construction and dual-track evaluation pipeline"
+                width="1835"
+                height="1050"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="card-kicker">CVPR 2026 · Image Editing Evaluation</div>
+              <h3><a class="title-link" href="pages/omni-iie.html">Omni IIE Bench</a></h3>
               <p>
-                Hierarchical interleaved multi-stream motion encoding for long-video understanding,
-                with compressed-domain motion vectors, residual maps, I-frame context, and
-                step-aware memory for process-level reasoning.
+                A human-curated benchmark for practical image-editing reliability, with separate
+                tracks for single-turn cross-scale consistency and multi-turn coordination.
               </p>
+              <ul>
+                <li>CVPR 2026 co-author.</li>
+                <li>1,725 single-turn dialogues and 260 multi-turn groups.</li>
+                <li>Diagnoses regional fidelity, instruction compliance, and accumulated error.</li>
+              </ul>
               <div class="card-links">
-                <a href="https://arxiv.org/abs/2605.08158" target="_blank" rel="noreferrer">HY-Himmel paper</a>
+                <a href="pages/omni-iie.html">Project details</a>
+                <a href="https://openaccess.thecvf.com/content/CVPR2026/html/Yang_Omni_IIE_Bench_Benchmarking_the_Practical_Capabilities_of_Image_Editing_CVPR_2026_paper.html" target="_blank" rel="noreferrer">CVPR 2026</a>
+              </div>
+            </article>
+
+            <article id="shotfinder" class="feature-card has-preview">
+              <img
+                class="card-preview"
+                src="assets/project-figures/shotfinder-figure3.png"
+                alt="ShotFinder generator, retriever, and localizer pipeline"
+                width="2425"
+                height="1340"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="card-kicker">Open-Domain Video Shot Retrieval</div>
+              <h3><a class="title-link" href="pages/shotfinder.html">ShotFinder</a></h3>
+              <p>
+                An imagination-driven system that expands shot descriptions into video-level web
+                queries, retrieves candidate videos, and localizes the target shot with adaptive
+                multimodal grounding.
+              </p>
+              <ul>
+                <li>Second author with equal contribution.</li>
+                <li>1,210 verified samples across 20 topics and six retrieval settings.</li>
+              </ul>
+              <div class="card-links">
+                <a href="pages/shotfinder.html">Project details</a>
+                <a href="https://arxiv.org/abs/2601.23232" target="_blank" rel="noreferrer">arXiv</a>
+              </div>
+            </article>
+
+            <article id="rvms-bench" class="feature-card has-preview">
+              <img
+                class="card-preview"
+                src="assets/project-figures/rvms-figure1.png"
+                alt="RVMS-Bench shift from closed-pool retrieval to real-world memory search"
+                width="2030"
+                height="970"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="card-kicker">Benchmark · Real-World Video Memory Search</div>
+              <h3><a class="title-link" href="pages/rvms-bench.html">RVMS-Bench</a></h3>
+              <p>
+                A 1,440-sample benchmark for finding long videos and moments on the open web from
+                fragmented global, key-moment, temporal, and auditory memories.
+              </p>
+              <ul>
+                <li>Third author with equal contribution.</li>
+                <li>20 categories and four duration ranges up to 60 minutes.</li>
+              </ul>
+              <div class="card-links">
+                <a href="pages/rvms-bench.html">Benchmark details</a>
+                <a href="https://huggingface.co/datasets/tencent/RVMS-Bench" target="_blank" rel="noreferrer">Dataset</a>
+                <a href="https://arxiv.org/abs/2602.10159" target="_blank" rel="noreferrer">Shared paper</a>
+              </div>
+            </article>
+
+            <article id="raclo" class="feature-card has-preview">
+              <img
+                class="card-preview"
+                src="assets/project-figures/raclo-figure3.png"
+                alt="RACLO Recall-Search-Verify agent framework"
+                width="2160"
+                height="700"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="card-kicker">Agent Framework · Open-Web Retrieval</div>
+              <h3><a class="title-link" href="pages/raclo.html">RACLO</a></h3>
+              <p>
+                Real-world Abductive Cognitive Logic Retrieval: a Recall–Search–Verify agent that
+                turns fuzzy multimodal memories into abductive queries, then performs video-level
+                verification and frame-level localization.
+              </p>
+              <ul>
+                <li>Third author with equal contribution.</li>
+                <li>Agent framework reported in the same paper as RVMS-Bench.</li>
+              </ul>
+              <div class="card-links">
+                <a href="pages/raclo.html">Method details</a>
+                <a href="https://arxiv.org/abs/2602.10159" target="_blank" rel="noreferrer">Shared paper</a>
               </div>
             </article>
 
@@ -211,52 +315,22 @@
                 learning, hard negatives, and retrieval/reranking/recommendation tasks.
               </p>
               <div class="card-links">
-                <a href="https://scholar.google.com/citations?hl=en&user=7NUo_ykAAAAJ" target="_blank" rel="noreferrer">
+                <a href="https://scholar.google.com/citations?hl=en&amp;user=7NUo_ykAAAAJ" target="_blank" rel="noreferrer">
                   Google Scholar
                 </a>
               </div>
             </article>
 
-            <article id="omni-iie" class="feature-card">
-              <div class="card-kicker">Image Editing Evaluation</div>
-              <h3>
-                <a
-                  class="title-link"
-                  href="pages/omni-iie.html"
-                >
-                  Omni IIE Bench / VDE Bench
-                </a>
-              </h3>
+            <article id="fmash" class="feature-card">
+              <div class="card-kicker">Recommendation · Molecular Representation</div>
+              <h3><a class="title-link" href="pages/fmash.html">FMASH</a></h3>
               <p>
-                Evaluation-oriented work for instruction-guided image editing, emphasizing global
-                image quality, regional fidelity, and instruction compliance.
+                Multiscale symptom-herb association fusion for traditional Chinese medicine
+                prescription recommendation, combining graph structure and molecular representations.
               </p>
               <div class="card-links">
-                <a
-                  href="https://openaccess.thecvf.com/content/CVPR2026/html/Yang_Omni_IIE_Bench_Benchmarking_the_Practical_Capabilities_of_Image_Editing_CVPR_2026_paper.html"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  CVPR 2026
-                </a>
-              </div>
-            </article>
-
-            <article id="robo-dopamine" class="feature-card">
-              <div class="card-kicker">VLA · Robotics Reward Modeling</div>
-              <h3>
-                <a class="title-link" href="pages/vla-robotics.html">
-                  Robo-Dopamine / VLA Process Reward
-                </a>
-              </h3>
-              <p>
-                VLA-related process reward modeling for robotic manipulation, centered on
-                step-aware progress understanding, multi-view reward fusion, and policy-invariant
-                reward shaping.
-              </p>
-              <div class="card-links">
-                <a href="https://robo-dopamine.github.io/" target="_blank" rel="noreferrer">Project page</a>
-                <a href="https://arxiv.org/abs/2512.23703" target="_blank" rel="noreferrer">arXiv paper</a>
+                <a href="pages/fmash.html">Project details</a>
+                <a href="https://arxiv.org/abs/2503.05167" target="_blank" rel="noreferrer">arXiv</a>
               </div>
             </article>
 
@@ -341,15 +415,16 @@
             <article>
               <span class="index">03</span>
               <div>
-                <h3>VLA, Long-video Understanding, and Robotics Reward Modeling</h3>
+                <h3>Long-video Understanding and Robotics Process Reward Modeling</h3>
                 <p>
-                  Connected long-video motion encoding with VLA-style process understanding:
-                  HY-Himmel focuses on compressed-domain motion tokens, while Robo-Dopamine
-                  provides a robotics reward-modeling view of step-aware progress estimation.
+                  HY-Himmel develops sparse semantic anchors and compressed-domain motion tokens
+                  for long videos. Separately, the ongoing Robo-Dopamine 2.0 prototype studies
+                  OOD-aware temporal memory for step-level robotic progress assessment.
                 </p>
                 <div class="project-links">
-                  <a href="https://arxiv.org/abs/2605.08158" target="_blank" rel="noreferrer">HY-Himmel</a>
-                  <a href="https://robo-dopamine.github.io/" target="_blank" rel="noreferrer">Robo-Dopamine</a>
+                  <a href="pages/hy-himmel.html">HY-Himmel details</a>
+                  <a href="pages/vla-robotics.html">Robo-Dopamine 2.0 ongoing work</a>
+                  <a href="https://robo-dopamine.github.io/" target="_blank" rel="noreferrer">Foundation: Robo-Dopamine (Tan et al.)</a>
                 </div>
               </div>
             </article>
@@ -397,7 +472,7 @@
             <article>
               <time>2023 - Present</time>
               <h3>Beijing University of Posts and Telecommunications</h3>
-              <p>B.Eng. candidate, Electronic Information Engineering & Management.</p>
+              <p>B.Eng. candidate, Electronic Information Engineering &amp; Management.</p>
             </article>
           </div>
         </section>
@@ -420,7 +495,7 @@
             <a href="https://openai.com/index/model-disproves-discrete-geometry-conjecture/" target="_blank" rel="noreferrer">
               Editorial research storytelling
             </a>
-            <a href="https://scholar.google.com/citations?hl=en&user=7NUo_ykAAAAJ" target="_blank" rel="noreferrer">
+            <a href="https://scholar.google.com/citations?hl=en&amp;user=7NUo_ykAAAAJ" target="_blank" rel="noreferrer">
               <span class="google-wordmark" aria-label="Google">
                 <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
               </span>
@@ -435,7 +510,7 @@
             <h2>Open to research collaborations and internship conversations.</h2>
           </div>
           <div class="contact-links">
-            <a href="https://scholar.google.com/citations?hl=en&user=7NUo_ykAAAAJ" target="_blank" rel="noreferrer">
+            <a href="https://scholar.google.com/citations?hl=en&amp;user=7NUo_ykAAAAJ" target="_blank" rel="noreferrer">
               <span class="google-wordmark" aria-label="Google">
                 <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
               </span>

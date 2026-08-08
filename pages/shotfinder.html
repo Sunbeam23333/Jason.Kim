@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="ShotFinder: imagination-driven open-domain video shot retrieval via web search."
+    />
+    <title>ShotFinder | Haopeng Jin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Newsreader:opsz,wght@6..72,500;6..72,700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="aurora-bg" aria-hidden="true">
+      <span class="aurora-beam beam-two"></span>
+      <span class="aurora-particle particle-one"></span>
+    </div>
+    <div class="site-shell">
+      <main class="detail-main">
+        <section class="detail-hero">
+          <a class="back-link" href="../index.html#research">← Back to projects</a>
+          <p class="eyebrow">Open-domain Video Retrieval · Web Search · Multimodal Grounding</p>
+          <h1>ShotFinder</h1>
+          <p class="detail-lead">
+            Imagination-Driven Open-Domain Video Shot Retrieval via Web Search. ShotFinder starts
+            from a remembered shot—not a known title or a closed candidate pool—and reconstructs
+            the likely source-video context before searching the web and grounding the exact
+            moment.
+          </p>
+          <div class="detail-meta">
+            <a href="https://arxiv.org/abs/2601.23232" target="_blank" rel="noreferrer">arXiv 2601.23232</a>
+            <span>Video imagination</span>
+            <span>Search-engine retrieval</span>
+            <span>Shot localization</span>
+          </div>
+          <div class="role-note">
+            <strong>My role</strong>
+            <p>
+              Second author with equal contribution. Tao Yu served as project leader. My work
+              contributed to the open-domain retrieval formulation, system development, and
+              empirical evaluation.
+            </p>
+          </div>
+          <figure class="detail-figure hero-figure">
+            <a
+              href="../assets/project-figures/shotfinder-figure3.png"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Open the ShotFinder pipeline at full resolution"
+            >
+              <img
+                src="../assets/project-figures/shotfinder-figure3.png"
+                alt="ShotFinder pipeline with video-shot imagination, web retrieval, adaptive multimodal grounding, and target-shot output"
+                width="2425"
+                height="1340"
+                fetchpriority="high"
+              />
+            </a>
+            <figcaption>
+              ShotFinder’s three-stage pipeline: Generator, Retriever, and Localizer. The model
+              imagines source-video context, produces video-level queries, searches the web, and
+              verifies the target shot with adaptive visual and audio evidence. Source: Figure 3.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section class="detail-section">
+          <span class="section-label">Benchmark</span>
+          <h2>Search the open web from a shot description and practical constraints</h2>
+          <div class="metric-grid">
+            <div class="metric-card">
+              <span class="metric-value">1,210</span>
+              <span class="metric-label">Human-verified YouTube retrieval samples.</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">20</span>
+              <span class="metric-label">Topics covering diverse real-world video content.</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">6</span>
+              <span class="metric-label">Base and constraint-aware shot-retrieval tasks.</span>
+            </div>
+          </div>
+          <p>
+            The six settings comprise a base shot-description task plus Temporal, Color, Visual
+            Style, Audio, and Resolution constraints. These controls make the benchmark closer to
+            how users refine an uncertain memory during real search.
+          </p>
+        </section>
+
+        <section class="detail-section">
+          <span class="section-label">Core insight</span>
+          <h2>Imagine the missing video-level context before searching</h2>
+          <p>
+            A shot-level description often omits the title, creator, topic, and surrounding story
+            that a search engine needs. ShotFinder uses a language model to imagine plausible
+            source-video contexts, then turns those hypotheses into multiple web-search queries.
+            Search is treated as abductive reconstruction rather than direct embedding lookup.
+          </p>
+          <div class="math-block">
+            \[
+            \begin{aligned}
+            \text{shot description}
+            &amp;\xrightarrow{\text{Video Imagination}}
+            \{q_i\}_{i=1}^{M}\\
+            &amp;\xrightarrow{\text{Web Search}}
+            \{v_{ij}\}\\
+            &amp;\xrightarrow{\text{MLLM localization}}
+            (\hat v,\hat t).
+            \end{aligned}
+            \]
+          </div>
+          <span class="math-caption">
+            The output is both the retrieved source video \(\hat v\) and the localized target time
+            \(\hat t\), not merely a ranked item in a predefined pool.
+          </span>
+        </section>
+
+        <section class="detail-grid">
+          <section class="detail-section">
+            <span class="section-label">Stage 1</span>
+            <h2>Generator</h2>
+            <ul>
+              <li>Interprets the remembered shot and any color, style, audio, resolution, or time constraint.</li>
+              <li>Imagines the broader source-video content that could contain the shot.</li>
+              <li>Produces diverse video-level search queries instead of one brittle literal query.</li>
+            </ul>
+          </section>
+          <section class="detail-section">
+            <span class="section-label">Stage 2</span>
+            <h2>Retriever</h2>
+            <ul>
+              <li>Interacts with a web search engine rather than a closed benchmark index.</li>
+              <li>Filters and downloads the top candidate videos returned by generated queries.</li>
+              <li>Preserves query provenance so later verification can audit why a video was found.</li>
+            </ul>
+          </section>
+        </section>
+
+        <section class="detail-section">
+          <span class="section-label">Stage 3</span>
+          <h2>Localizer: adapt visual and audio evidence to each candidate</h2>
+          <p>
+            Candidate duration and modality availability vary widely on the open web. The localizer
+            therefore uses adaptive frame sampling, optional audio, and multimodal grounding to
+            find a matching moment, followed by an explicit verification step.
+          </p>
+          <div class="method-flow">
+            <span>Adaptive frame sampling</span>
+            <span>Visual + optional audio evidence</span>
+            <span>MLLM grounding</span>
+            <span>Candidate verification</span>
+          </div>
+        </section>
+
+        <section class="detail-section">
+          <span class="section-label">Research value</span>
+          <h2>Why open-domain shot retrieval is different</h2>
+          <div class="insight-grid">
+            <div class="insight-card">
+              <h3>No fixed pool</h3>
+              <p>The target competes with the full web, so candidate acquisition is part of the task.</p>
+            </div>
+            <div class="insight-card">
+              <h3>Two retrieval scales</h3>
+              <p>The system must first find the source video and then localize the correct shot.</p>
+            </div>
+            <div class="insight-card">
+              <h3>Auditable reasoning</h3>
+              <p>Generated queries expose the hypotheses connecting a fuzzy memory to web results.</p>
+            </div>
+          </div>
+        </section>
+
+        <nav class="project-nav" aria-label="Project navigation">
+          <a href="omni-iie.html">← Previous: Omni IIE Bench</a>
+          <a href="rvms-bench.html">Next: RVMS-Bench →</a>
+        </nav>
+      </main>
+      <footer class="footer"><p>© <span id="year"></span> Haopeng Jin.</p></footer>
+    </div>
+    <script src="../script.js"></script>
+  </body>
+</html>

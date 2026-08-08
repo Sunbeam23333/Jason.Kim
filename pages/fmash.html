@@ -6,7 +6,7 @@
     <title>FMASH | Haopeng Jin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Newsreader:opsz,wght@6..72,500;6..72,700&amp;display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
@@ -25,8 +25,8 @@
             <span>UniMol</span>
           </div>
           <figure class="detail-figure">
-            <img src="../assets/project-figures/fmash-paper.png" alt="FMASH paper first page preview" />
-            <figcaption>Paper preview rendered from the public arXiv PDF.</figcaption>
+            <img src="../assets/project-figures/fmash-tsne-clean.jpg" alt="FMASH representation t-SNE visualization" />
+            <figcaption>Clean figure extracted from the FMASH public PDF, showing real and generated representation structure.</figcaption>
           </figure>
         </section>
         <section class="detail-section">
@@ -44,14 +44,20 @@
             <span>Ordered Formula Generation</span>
           </div>
           <div class="equation-stack">
-            <div class="equation">
-              <code>H_graph = GCN(A_symptom-herb, X_node)</code>
-              <span>Local heterogeneous graph propagation over symptoms and herbs.</span>
+            <div class="math-block">
+              \[
+              H_{\mathrm{graph}}
+              =\operatorname{GCN}\!\left(A_{\mathrm{symptom\text{-}herb}},X_{\mathrm{node}}\right).
+              \]
             </div>
-            <div class="equation">
-              <code>H_fused = Gate(H_graph, H_molecule)</code>
-              <span>Molecular representations are fused with graph-side clinical evidence.</span>
+            <span class="math-caption">Local heterogeneous graph propagation over symptoms and herbs.</span>
+            <div class="math-block">
+              \[
+              H_{\mathrm{fused}}
+              =\operatorname{Gate}\!\left(H_{\mathrm{graph}},H_{\mathrm{molecule}}\right).
+              \]
             </div>
+            <span class="math-caption">Molecular representations are fused with graph-side clinical evidence.</span>
           </div>
         </section>
         <section class="detail-grid">

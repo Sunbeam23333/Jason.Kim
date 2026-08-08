@@ -6,7 +6,7 @@
     <title>WorldDistill | Haopeng Jin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Newsreader:opsz,wght@6..72,500;6..72,700&amp;display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
@@ -83,18 +83,24 @@
             which makes few-step distillation and consistency training easier to unify.
           </p>
           <div class="equation-stack">
-            <div class="equation">
-              <code>x_t = (1 - σ) · x_0 + σ · ε</code>
-              <span>Flow-matching style interpolation between clean data and noise.</span>
+            <div class="math-block">
+              \[
+              x_t=(1-\sigma)x_0+\sigma\varepsilon.
+              \]
             </div>
-            <div class="equation">
-              <code>x_0 = x_t - σ · v_θ(x_t, t)</code>
-              <span>Recover clean prediction from the student velocity field.</span>
+            <span class="math-caption">Flow-matching style interpolation between clean data and noise.</span>
+            <div class="math-block">
+              \[
+              x_0=x_t-\sigma\,v_\theta(x_t,t).
+              \]
             </div>
-            <div class="equation">
-              <code>x_{t-1} = x_t + Δt · v_θ(x_t, t)</code>
-              <span>Few-step update used by distilled video/world-model students.</span>
+            <span class="math-caption">Recover a clean prediction from the student velocity field.</span>
+            <div class="math-block">
+              \[
+              x_{t-1}=x_t+\Delta t\,v_\theta(x_t,t).
+              \]
             </div>
+            <span class="math-caption">A compact update used by few-step video/world-model students.</span>
           </div>
         </section>
 

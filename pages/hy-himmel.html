@@ -3,70 +3,235 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>HY-Himmel / Dopamine 2.0 | Haopeng Jin</title>
+    <meta
+      name="description"
+      content="HY-Himmel: hierarchical interleaved multi-stream motion encoding for efficient long-video understanding."
+    />
+    <title>HY-Himmel Technical Report | Haopeng Jin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Newsreader:opsz,wght@6..72,500;6..72,700&amp;display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
-    <div class="aurora-bg" aria-hidden="true"><span class="aurora-beam beam-two"></span></div>
+    <div class="aurora-bg" aria-hidden="true">
+      <span class="aurora-beam beam-two"></span>
+      <span class="aurora-particle particle-two"></span>
+    </div>
     <div class="site-shell">
       <main class="detail-main">
         <section class="detail-hero">
-          <a class="back-link" href="../index.html#research">← Back to homepage</a>
-          <p class="eyebrow">Long-video Understanding · Motion Encoding · VLA-inspired Reasoning</p>
-          <h1>HY-Himmel / Dopamine 2.0</h1>
-          <p class="detail-lead">Hierarchical interleaved multi-stream motion encoding for long videos and step-aware reasoning.</p>
+          <a class="back-link" href="../index.html#research">← Back to projects</a>
+          <p class="eyebrow">Technical Report · Long-video Understanding · Efficient MLLMs</p>
+          <h1>HY-Himmel Technical Report</h1>
+          <p class="detail-lead">
+            Hierarchical Interleaved Multi-stream Motion Encoding for Long Video Understanding.
+            HY-Himmel separates sparse semantic anchors from dense compressed-domain motion so a
+            multimodal language model can reason over long videos without paying the visual-token
+            cost of uniformly encoding every frame.
+          </p>
           <div class="detail-meta">
-            <a href="https://arxiv.org/abs/2605.08158" target="_blank" rel="noreferrer">HY-Himmel Paper</a>
-            <span>Motion Vectors</span>
-            <span>Residual Maps</span>
-            <span>Step Memory</span>
+            <a href="https://arxiv.org/abs/2605.08158" target="_blank" rel="noreferrer">arXiv 2605.08158</a>
+            <span>RGB / Motion Vector / Residual</span>
+            <span>Frozen VLM</span>
+            <span>Video-MME</span>
           </div>
-          <figure class="detail-figure">
-            <img src="../assets/project-figures/hy-himmel-paper.png" alt="HY-Himmel paper first page preview" />
-            <figcaption>HY-Himmel public PDF preview.</figcaption>
+          <div class="role-note">
+            <strong>My role</strong>
+            <p>
+              First author and project lead; joint corresponding author with Hongzhu Yi. I led the
+              hierarchical semantic-motion design, training formulation, and evaluation.
+            </p>
+          </div>
+          <figure class="detail-figure hero-figure">
+            <a
+              href="../assets/project-figures/hy-himmel-figure1.png"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Open the HY-Himmel architecture figure at full resolution"
+            >
+              <img
+                src="../assets/project-figures/hy-himmel-figure1.png"
+                alt="HY-Himmel compares dense visual encoding with sparse semantic anchors and dense compressed-domain motion encoding"
+              />
+            </a>
+            <figcaption>
+              HY-Himmel overview. Sparse I-frames preserve global semantics; interleaved local clips
+              contribute RGB, motion-vector, and residual evidence. Open the figure for the
+              full-resolution version. Source: Figure 1 of the technical report.
+            </figcaption>
           </figure>
         </section>
+
         <section class="detail-section">
-          <h2>Idea</h2>
-          <p>
-            Long videos are expensive to encode frame by frame, and many tasks require motion and
-            temporal progress rather than static visual recognition. HY-Himmel uses compressed-domain
-            signals and hierarchical memory to preserve motion cues efficiently.
-          </p>
-          <div class="method-flow">
-            <span>I-frame Context</span>
-            <span>Motion Vectors</span>
-            <span>Residual Maps</span>
-            <span>Step-aware Memory</span>
+          <span class="section-label">Outcome</span>
+          <h2>More temporal evidence with a much smaller context</h2>
+          <div class="metric-grid">
+            <div class="metric-card">
+              <span class="metric-value">63.5</span>
+              <span class="metric-label">Video-MME score reported by HY-Himmel.</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">+2.3</span>
+              <span class="metric-label">Points over the dense 32-frame baseline (61.2).</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">3.6×</span>
+              <span class="metric-label">Fewer context tokens than the dense-frame setting.</span>
+            </div>
           </div>
-          <div class="equation-stack">
-            <div class="equation">
-              <code>z_t = Fuse(I_t, MV_t, R_t, M_{t-1})</code>
-              <span>Each timestep fuses appearance, compressed-domain motion, residual change, and historical memory.</span>
+          <div class="project-callout">
+            <p>
+              The central result is not simply “sample fewer frames.” HY-Himmel assigns different
+              jobs to different streams: sparse anchors carry scene semantics, while compressed
+              video signals preserve local motion at low token cost.
+            </p>
+          </div>
+        </section>
+
+        <section class="detail-section">
+          <span class="section-label">Problem formulation</span>
+          <h2>Decompose a long video into semantic anchors and interleaved motion clips</h2>
+          <p>
+            Uniform frame sampling wastes visual tokens on redundant appearance, yet aggressive
+            sparse sampling can miss brief actions. HY-Himmel first selects semantic anchor frames
+            and then associates them with local interleaved clips that retain fine-grained temporal
+            evidence.
+          </p>
+          <div class="math-block">
+            \[
+            \begin{aligned}
+            \mathcal{V}&amp;=\{x_1,\ldots,x_T\}\\
+            &amp;\longrightarrow\{x_t:t\in\mathcal{A}\}\\
+            &amp;\qquad\cup\{\mathcal{I}_k:k\in[1,K]\}.
+            \end{aligned}
+            \]
+          </div>
+          <span class="math-caption">
+            \(\mathcal{A}\) indexes sparse semantic anchors; each \(\mathcal{I}_k\) is a local
+            interleaved clip around an anchor.
+          </span>
+          <div class="method-flow">
+            <span>Long input video</span>
+            <span>Semantic I-frame anchors</span>
+            <span>Local RGB / MV / residual clips</span>
+            <span>Interleaved VLM tokens</span>
+          </div>
+        </section>
+
+        <section class="detail-grid">
+          <section class="detail-section">
+            <span class="section-label">Semantic path</span>
+            <h2>Sparse global understanding</h2>
+            <ul>
+              <li>I-frames capture objects, scenes, and high-level events with the full visual encoder.</li>
+              <li>Sparse placement controls the expensive ViT budget over long durations.</li>
+              <li>Anchor semantics provide the reference space used to align motion features.</li>
+            </ul>
+          </section>
+          <section class="detail-section">
+            <span class="section-label">Motion path</span>
+            <h2>Dense local dynamics</h2>
+            <ul>
+              <li>RGB clips preserve local appearance around an anchor.</li>
+              <li>Motion vectors encode displacement already available in compressed video.</li>
+              <li>Residual maps retain changes that motion compensation cannot explain.</li>
+            </ul>
+          </section>
+        </section>
+
+        <section class="detail-section">
+          <span class="section-label">Adaptive fusion</span>
+          <h2>Gate motion vectors and residuals before combining them with RGB</h2>
+          <p>
+            Motion vectors are efficient but imperfect; residuals expose newly appearing details
+            and compensation errors. A learned gate decides how much each compressed-domain signal
+            should contribute for a local clip.
+          </p>
+          <div class="math-block">
+            \[
+            \begin{aligned}
+            g_k^{mr}
+            &amp;=\sigma\!\left(W_g[h_k^{mv};h_k^{res}]+b_g\right),\\
+            h_k^{mr}
+            &amp;=g_k^{mr}\odot h_k^{mv}\\
+            &amp;\quad +(1-g_k^{mr})\odot h_k^{res}.
+            \end{aligned}
+            \]
+          </div>
+          <span class="math-caption">
+            \(h_k^{mv}\) and \(h_k^{res}\) are the motion-vector and residual representations;
+            \(g_k^{mr}\) is the learned element-wise gate.
+          </span>
+        </section>
+
+        <section class="detail-section">
+          <span class="section-label">Training</span>
+          <h2>Align motion with semantics, then inject compact motion tokens</h2>
+          <p>
+            Training first places compressed-domain motion representations in the semantic space
+            of the visual model. Contrastive and cosine terms encourage agreement without erasing
+            complementary motion information.
+          </p>
+          <div class="math-block">
+            \[
+            \mathcal L_{\mathrm{align}}
+            =\mathcal L_{\mathrm{InfoNCE}}
+            +\lambda_{\cos}\bigl(1-\cos(m_k,v_k)\bigr).
+            \]
+          </div>
+          <p>
+            The aligned motion tokens are then inserted at designated positions while the original
+            embedding sequence is protected with stop-gradient. This keeps the pretrained VLM
+            stable and makes the additional temporal pathway explicit.
+          </p>
+          <div class="math-block">
+            \[
+            E'=\operatorname{sg}(E)\odot
+            \left(1-\Pi\mathbf 1_{KK_m}\right)+\Pi M.
+            \]
+          </div>
+          <span class="math-caption">
+            \(M\) contains learned motion tokens and \(\Pi\) maps them into the interleaved
+            sequence; \(\operatorname{sg}\) denotes stop-gradient.
+          </span>
+        </section>
+
+        <section class="detail-section">
+          <span class="section-label">Interpretation</span>
+          <h2>What the technical report establishes—and what it does not</h2>
+          <div class="insight-grid">
+            <div class="insight-card">
+              <h3>Established</h3>
+              <p>
+                Compressed-domain motion can complement sparse semantic frames and improve
+                long-video QA under a substantially smaller context budget.
+              </p>
+            </div>
+            <div class="insight-card">
+              <h3>Design implication</h3>
+              <p>
+                Token allocation should follow information density: full semantic encoding where
+                it matters, low-cost motion encoding where temporal coverage matters.
+              </p>
+            </div>
+            <div class="insight-card">
+              <h3>Boundary</h3>
+              <p>
+                The approach depends on compressed-video signals and inherits errors from motion
+                estimation, anchor selection, and the frozen visual-language backbone.
+              </p>
             </div>
           </div>
         </section>
-        <section class="detail-grid">
-          <section class="detail-section">
-            <h2>Representation</h2>
-            <ul>
-              <li>I-frame context for appearance and scene semantics.</li>
-              <li>Motion vectors for lightweight temporal displacement.</li>
-              <li>Residual maps for changes not explained by motion compensation.</li>
-            </ul>
-          </section>
-          <section class="detail-section">
-            <h2>Reasoning View</h2>
-            <ul>
-              <li>Step-aware memory for progress tracking.</li>
-              <li>Interleaved streams to avoid losing fine-grained temporal evidence.</li>
-              <li>Connection to VLA-style process understanding and task completion signals.</li>
-            </ul>
-          </section>
-        </section>
+
+        <nav class="project-nav" aria-label="Project navigation">
+          <a href="../index.html#research">← All projects</a>
+          <a href="vla-robotics.html">Next: Robo-Dopamine 2.0 →</a>
+        </nav>
       </main>
       <footer class="footer"><p>© <span id="year"></span> Haopeng Jin.</p></footer>
     </div>

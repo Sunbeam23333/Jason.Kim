@@ -6,7 +6,7 @@
     <title>StreamDiT | Haopeng Jin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Newsreader:opsz,wght@6..72,500;6..72,700&amp;display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
@@ -43,10 +43,17 @@
             <span>Minute-scale Video</span>
           </div>
           <div class="equation-stack">
-            <div class="equation">
-              <code>M_peak ≈ M_active_layers + M_activation_window + M_context_shard</code>
-              <span>Peak memory is controlled by streaming layer residency and splitting temporal context.</span>
+            <div class="math-block">
+              \[
+              \begin{aligned}
+              M_{\mathrm{peak}}
+              &amp;\approx M_{\mathrm{active\ layers}}\\
+              &amp;\quad+M_{\mathrm{activation\ window}}\\
+              &amp;\quad+M_{\mathrm{context\ shard}}.
+              \end{aligned}
+              \]
             </div>
+            <span class="math-caption">Peak memory is controlled by streaming layer residency and splitting temporal context.</span>
           </div>
         </section>
         <section class="detail-grid">

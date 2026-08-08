@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="RACLO: Real-world Abductive Cognitive Logic Retrieval, a Recall-Search-Verify agent for open-web video search and localization."
+    />
+    <title>RACLO | Haopeng Jin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Newsreader:opsz,wght@6..72,500;6..72,700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="aurora-bg" aria-hidden="true">
+      <span class="aurora-beam beam-three"></span>
+      <span class="aurora-particle particle-three"></span>
+    </div>
+    <div class="site-shell">
+      <main class="detail-main">
+        <section class="detail-hero">
+          <a class="back-link" href="../index.html#research">← Back to projects</a>
+          <p class="eyebrow">Agent Framework · Open-web Video Search · Multimodal Verification</p>
+          <h1>RACLO</h1>
+          <p class="detail-lead">
+            Real-world Abductive Cognitive Logic Retrieval. RACLO is a Recall–Search–Verify agent
+            that turns fragmented video memories into abductive web queries, processes candidate
+            videos, and verifies the result at both video and frame granularity.
+          </p>
+          <div class="detail-meta">
+            <a href="https://arxiv.org/abs/2602.10159" target="_blank" rel="noreferrer">Shared paper</a>
+            <a href="https://huggingface.co/datasets/tencent/RVMS-Bench" target="_blank" rel="noreferrer">RVMS-Bench</a>
+            <span>Recall–Search–Verify</span>
+            <span>ReAct web agent</span>
+          </div>
+          <div class="role-note">
+            <strong>Publication context</strong>
+            <p>
+              Third author with equal contribution; Tao Yu served as project leader. RACLO is the
+              agent framework in the same paper as RVMS-Bench, not a separate standalone paper.
+            </p>
+          </div>
+          <figure class="detail-figure hero-figure">
+            <a
+              href="../assets/project-figures/raclo-figure3.png"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Open the RACLO framework at full resolution"
+            >
+              <img
+                src="../assets/project-figures/raclo-figure3.png"
+                alt="RACLO framework from multimodal memory through abductive web search, preprocessing, parallel verification, and localization"
+                width="2160"
+                height="700"
+                fetchpriority="high"
+              />
+            </a>
+            <figcaption>
+              RACLO overview: abductive query expansion and search, candidate preprocessing, then
+              parallel video-level verification and frame-level localization. Source: Figure 3 of
+              the shared RVMS-Bench paper.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section class="detail-section">
+          <span class="section-label">Agent objective</span>
+          <h2>Reason from effects back to a searchable cause</h2>
+          <p>
+            A remembered scene is an effect of a larger, unknown source video. Directly searching
+            the memory text often returns generic visual matches. RACLO instead asks what source,
+            topic, event, or narrative could plausibly have produced the global impression, key
+            moment, temporal context, and auditory memory.
+          </p>
+          <div class="math-block">
+            \[
+            \begin{aligned}
+            (G,K,T,A)
+            &amp;\longrightarrow \text{Abductive}\\
+            &amp;\longrightarrow \text{Query Expansion}\\
+            &amp;\longrightarrow \text{Web Search}\\
+            &amp;\longrightarrow \{\text{candidates}\}\\
+            &amp;\longrightarrow
+            \begin{bmatrix}
+            \mathrm{Verify}_G\\
+            \mathrm{Localize}_{KTA}
+            \end{bmatrix}.
+            \end{aligned}
+            \]
+          </div>
+          <span class="math-caption">
+            Global impression \(G\) is most useful for source-video verification; key, temporal,
+            and auditory memories \(K,T,A\) provide fine-grained localization evidence.
+          </span>
+        </section>
+
+        <section class="detail-section">
+          <span class="section-label">Stage 1 · Recall and Search</span>
+          <h2>Expand uncertain memories into multiple web-search hypotheses</h2>
+          <p>
+            The agent uses abductive reasoning to form video-level queries, interacts with web
+            search tools in a ReAct loop, and collects candidate URLs. A rule-based fast path can
+            recognize direct or repeated URLs; otherwise content verification prevents a
+            metadata-only match from accepting a reupload or unrelated copy.
+          </p>
+          <div class="method-flow">
+            <span>G / K / T / A memories</span>
+            <span>Abductive query expansion</span>
+            <span>Search-tool interaction</span>
+            <span>Candidate URL set</span>
+          </div>
+        </section>
+
+        <section class="detail-grid">
+          <section class="detail-section">
+            <span class="section-label">Stage 2</span>
+            <h2>Candidate preprocessing</h2>
+            <ul>
+              <li>Download candidate videos that survive URL and metadata checks.</li>
+              <li>Extract audio separately so auditory clues are not lost.</li>
+              <li>Use fixed-count frames for video matching and duration-adaptive frames for localization.</li>
+            </ul>
+          </section>
+          <section class="detail-section">
+            <span class="section-label">Stage 3</span>
+            <h2>Parallel verification</h2>
+            <ul>
+              <li>Video-level matching tests the global impression against sampled visual and audio evidence.</li>
+              <li>Frame-level localization grounds key, temporal, and auditory details.</li>
+              <li>Model-based checks reject plausible-looking but unsupported candidates.</li>
+            </ul>
+          </section>
+        </section>
+
+        <section class="detail-section">
+          <span class="section-label">Why two granularities</span>
+          <h2>Finding the source and finding the moment are different decisions</h2>
+          <div class="insight-grid">
+            <div class="insight-card">
+              <h3>Video-level evidence</h3>
+              <p>Topic, style, narrative, full audio, and global appearance identify the source.</p>
+            </div>
+            <div class="insight-card">
+              <h3>Frame-level evidence</h3>
+              <p>Anchor details and local temporal context identify the remembered moment.</p>
+            </div>
+            <div class="insight-card">
+              <h3>Independent rejection</h3>
+              <p>A candidate can match globally yet fail localization, so both checks must pass.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="detail-section">
+          <span class="section-label">Scope and limits</span>
+          <h2>An open-world agent whose environment can change</h2>
+          <p>
+            RACLO is evaluated with RVMS-Bench, but its web-facing behavior also depends on search
+            ranking, page availability, download success, and tool latency. The explicit
+            Recall–Search–Verify decomposition makes those failure points visible rather than
+            collapsing them into a single opaque retrieval score.
+          </p>
+          <div class="card-links">
+            <a href="rvms-bench.html">Read the benchmark page</a>
+            <a href="video-search.html">View the full research program</a>
+          </div>
+        </section>
+
+        <nav class="project-nav" aria-label="Project navigation">
+          <a href="rvms-bench.html">← Previous: RVMS-Bench</a>
+          <a href="../index.html#research">All projects →</a>
+        </nav>
+      </main>
+      <footer class="footer"><p>© <span id="year"></span> Haopeng Jin.</p></footer>
+    </div>
+    <script src="../script.js"></script>
+  </body>
+</html>

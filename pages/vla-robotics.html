@@ -3,70 +3,225 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Robo-Dopamine / VLA Process Reward | Haopeng Jin</title>
+    <meta
+      name="description"
+      content="Robo-Dopamine 2.0: an ongoing OOD-aware temporal-memory prototype for robotic process reward modeling."
+    />
+    <title>Robo-Dopamine 2.0 | Haopeng Jin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Newsreader:opsz,wght@6..72,500;6..72,700&amp;display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
-    <div class="aurora-bg" aria-hidden="true"><span class="aurora-beam beam-three"></span></div>
+    <div class="aurora-bg" aria-hidden="true">
+      <span class="aurora-beam beam-three"></span>
+      <span class="aurora-particle particle-three"></span>
+    </div>
     <div class="site-shell">
       <main class="detail-main">
         <section class="detail-hero">
-          <a class="back-link" href="../index.html#research">← Back to homepage</a>
-          <p class="eyebrow">VLA · Robotics · Process Reward Modeling</p>
-          <h1>Robo-Dopamine / VLA Process Reward</h1>
-          <p class="detail-lead">A VLA-related reward-modeling view of robotic manipulation, focused on step-aware progress and multi-view evidence fusion.</p>
+          <a class="back-link" href="../index.html#research">← Back to projects</a>
+          <p class="eyebrow">Ongoing Research · Robotics · Process Reward Modeling</p>
+          <h1>Robo-Dopamine 2.0</h1>
+          <p class="detail-lead">
+            OOD-Aware Temporal Memory for Process Reward Modeling. This research prototype extends
+            state-only reward assessment with compact, time-ordered visual history so a scorer can
+            distinguish genuine task progress from superficially plausible but task-breaking
+            transitions.
+          </p>
           <div class="detail-meta">
-            <a href="https://robo-dopamine.github.io/" target="_blank" rel="noreferrer">Project Page</a>
-            <a href="https://arxiv.org/abs/2512.23703" target="_blank" rel="noreferrer">Paper</a>
-            <span>Process Reward</span>
-            <span>Policy-invariant Shaping</span>
+            <span>Research prototype</span>
+            <span>Temporal memory panels</span>
+            <span>OOD-aware supervision</span>
+            <a href="https://robo-dopamine.github.io/" target="_blank" rel="noreferrer">Foundation project</a>
+            <a href="https://arxiv.org/abs/2512.23703" target="_blank" rel="noreferrer">Foundation paper</a>
           </div>
-          <figure class="detail-figure">
-            <img src="../assets/project-figures/robo-dopamine-paper.png" alt="Robo-Dopamine paper first page preview" />
-            <figcaption>Robo-Dopamine public PDF preview.</figcaption>
+          <div class="role-note">
+            <strong>Relationship to prior work</strong>
+            <p>
+              This page documents my ongoing 2.0 extension. The original Robo-Dopamine work by
+              Tan et al. is the technical foundation; it is cited here as related work rather than
+              presented as a publication I co-authored.
+            </p>
+          </div>
+          <figure class="detail-figure hero-figure compact-figure">
+            <a
+              href="../assets/project-figures/robo-dopamine2-memory-panel.png"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Open the temporal memory panel at full resolution"
+            >
+              <img
+                src="../assets/project-figures/robo-dopamine2-memory-panel.png"
+                alt="A compact time-ordered memory panel showing robot observations before and after a task transition"
+              />
+            </a>
+            <figcaption>
+              Temporal Memory Panel concept: a compact history precedes synchronized before/after
+              views, giving a process reward model evidence about direction of progress rather than
+              only the final appearance.
+            </figcaption>
           </figure>
         </section>
+
         <section class="detail-section">
-          <h2>Research Framing</h2>
+          <span class="section-label">Research question</span>
+          <h2>Can the same visual transition mean different things under different histories?</h2>
           <p>
-            In robotic manipulation, a final success signal is often too sparse. Process reward
-            modeling provides dense supervision by judging whether intermediate states move the
-            robot closer to task completion.
+            A static scorer sees only the current before/after evidence. In long-horizon
+            manipulation, that can be ambiguous: an object may look closer to a goal while an
+            earlier prerequisite was skipped, or an OOD perturbation may preserve local appearance
+            while breaking the task trajectory. Robo-Dopamine 2.0 adds bounded history without
+            changing the underlying VLM or process-reward backbone.
           </p>
           <div class="method-flow">
-            <span>Instruction</span>
-            <span>Multi-view Observation</span>
-            <span>Progress Reward</span>
-            <span>Policy Shaping</span>
+            <span>Task references</span>
+            <span>Compact trajectory history</span>
+            <span>Before / after transition</span>
+            <span>Process score</span>
           </div>
-          <div class="equation-stack">
-            <div class="equation">
-              <code>R_process(s_t, a_t, g) = Φ(s_{t+1}, g) - Φ(s_t, g)</code>
-              <span>Potential-based process reward estimates progress toward the language goal.</span>
+        </section>
+
+        <section class="detail-section">
+          <span class="section-label">State space</span>
+          <h2>Train on normal progress, robust perturbations, and task-breaking negatives</h2>
+          <div class="insight-grid">
+            <div class="insight-card">
+              <h3>Normal positives</h3>
+              <p>Successful transitions that advance the intended manipulation trajectory.</p>
+            </div>
+            <div class="insight-card">
+              <h3>Robust OOD cases</h3>
+              <p>
+                Perturbed observations whose before/after evidence remains valid but whose context
+                should be reconstructed from the corresponding successful source trajectory.
+              </p>
+            </div>
+            <div class="insight-card">
+              <h3>Task-breaking negatives</h3>
+              <p>Transitions that may look locally reasonable but invalidate future task completion.</p>
             </div>
           </div>
+          <div class="project-callout">
+            <p>
+              For OOD examples only, the prototype keeps the perturbed before/after observations
+              intact and rebuilds the preceding history from the matched successful trajectory.
+              This isolates the perturbation while preserving a coherent account of prior progress.
+            </p>
+          </div>
         </section>
+
         <section class="detail-grid">
           <section class="detail-section">
-            <h2>Model Signals</h2>
-            <ul>
-              <li>Multi-view visual observations.</li>
-              <li>Language instructions and subgoal descriptions.</li>
-              <li>Step-level progress and failure modes.</li>
-            </ul>
+            <span class="section-label">Baseline input</span>
+            <h2>Static eight-view panel</h2>
+            <p>
+              The baseline combines start/end references with high, left, and right views before
+              and after a candidate transition.
+            </p>
+            <div class="math-block">
+              \[
+              I_{\mathrm{static}}
+              =[r_s,r_e,b^{\mathrm{high}},b^{\mathrm{left}},b^{\mathrm{right}},
+              a^{\mathrm{high}},a^{\mathrm{left}},a^{\mathrm{right}}].
+              \]
+            </div>
           </section>
           <section class="detail-section">
-            <h2>System Role</h2>
-            <ul>
-              <li>Reward scoring for rollout analysis.</li>
-              <li>Shaping signals for policy optimization.</li>
-              <li>Evaluation of long-horizon robotic task progress.</li>
-            </ul>
+            <span class="section-label">Memory input</span>
+            <h2>Bounded temporal panel</h2>
+            <p>
+              The memory variant inserts a small set of pre-transition and intermediate panels,
+              then retains three synchronized views around the scored transition.
+            </p>
+            <div class="math-block">
+              \[
+              I_{\mathrm{mem}}
+              =[r_s,r_e,P_{\mathrm{pre}}^{1:K},
+              b^{1:3},P_{\mathrm{mid}}^{1:L},a^{1:3}],
+              \qquad K\leq3,\ L\leq1.
+              \]
+            </div>
           </section>
         </section>
+
+        <section class="detail-section">
+          <span class="section-label">Model compatibility</span>
+          <h2>Keep the scorer architecture fixed; change the evidence it receives</h2>
+          <p>
+            Both static and memory panels are serialized into the same multimodal scoring
+            interface. The experiment therefore tests the value of temporal evidence without
+            requiring a new process-reward backbone.
+          </p>
+          <div class="math-block">
+            \[
+            \begin{aligned}
+            s_\theta&amp;=f_\theta(x,I),\\
+            \mathcal L
+            &amp;=-y\log\sigma(s_\theta)\\
+            &amp;\quad -(1-y)\log\!\left(1-\sigma(s_\theta)\right).
+            \end{aligned}
+            \]
+          </div>
+          <span class="math-caption">
+            \(x\) is the task instruction, \(I\) is either the static or memory panel, and \(y\)
+            marks whether the transition reflects valid progress.
+          </span>
+        </section>
+
+        <section class="detail-section">
+          <span class="section-label">Controlled evaluation</span>
+          <h2>Ablate history and OOD construction separately</h2>
+          <div class="metric-grid">
+            <div class="metric-card">
+              <span class="metric-value">01</span>
+              <span class="metric-label">Static eight-view input: the controlled baseline.</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">02</span>
+              <span class="metric-label">Temporal memory: measures whether bounded history helps.</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">03</span>
+              <span class="metric-label">OOD-aware memory: tests robust trajectory reconstruction.</span>
+            </div>
+          </div>
+          <div class="math-block">
+            \[
+            \Delta_{\mathrm{hist}}
+            =\mathrm{Score}_{\mathrm{panel}}
+            -\mathrm{Score}_{\mathrm{static8}}.
+            \]
+          </div>
+          <span class="math-caption">
+            The primary comparison isolates the gain attributable to history under the same
+            scoring backbone and task split.
+          </span>
+        </section>
+
+        <section class="detail-section">
+          <span class="section-label">Status</span>
+          <h2>Evaluation plan, not a published performance claim</h2>
+          <p>
+            Robo-Dopamine 2.0 is ongoing work. The method page records the hypothesis, input
+            construction, and ablation design; it intentionally does not report final numbers
+            before the evaluation is complete and publicly documented.
+          </p>
+          <ul>
+            <li>Measure classification quality separately on in-distribution and OOD transitions.</li>
+            <li>Check whether history helps task-breaking cases rather than merely easy positives.</li>
+            <li>Audit sensitivity to history length, panel ordering, and source-trajectory matching.</li>
+          </ul>
+        </section>
+
+        <nav class="project-nav" aria-label="Project navigation">
+          <a href="hy-himmel.html">← Previous: HY-Himmel</a>
+          <a href="omni-iie.html">Next: Omni IIE Bench →</a>
+        </nav>
       </main>
       <footer class="footer"><p>© <span id="year"></span> Haopeng Jin.</p></footer>
     </div>

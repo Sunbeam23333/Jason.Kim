@@ -3,70 +3,203 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Omni IIE Bench / VDE Bench | Haopeng Jin</title>
+    <meta
+      name="description"
+      content="Omni IIE Bench, a CVPR 2026 benchmark for single-turn consistency and multi-turn coordination in practical image editing."
+    />
+    <title>Omni IIE Bench | Haopeng Jin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Newsreader:opsz,wght@6..72,500;6..72,700&amp;display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
-    <div class="aurora-bg" aria-hidden="true"><span class="aurora-beam beam-three"></span></div>
+    <div class="aurora-bg" aria-hidden="true">
+      <span class="aurora-beam beam-one"></span>
+      <span class="aurora-particle particle-four"></span>
+    </div>
     <div class="site-shell">
       <main class="detail-main">
         <section class="detail-hero">
-          <a class="back-link" href="../index.html#research">← Back to homepage</a>
-          <p class="eyebrow">Image Editing Evaluation · Benchmarking · Multimodal Assessment</p>
-          <h1>Omni IIE Bench / VDE Bench</h1>
-          <p class="detail-lead">Evaluation-oriented work for instruction-guided image editing and visual detail editing, with attention to practical model capability rather than only isolated visual quality.</p>
+          <a class="back-link" href="../index.html#research">← Back to projects</a>
+          <p class="eyebrow">CVPR 2026 · Image Editing · Practical Evaluation</p>
+          <h1>Omni IIE Bench</h1>
+          <p class="detail-lead">
+            Benchmarking the Practical Capabilities of Image Editing Models. Omni IIE Bench tests
+            whether an editor can apply the requested change at multiple semantic scales, preserve
+            unrelated content, and coordinate a long sequence of edits without compounding errors.
+          </p>
           <div class="detail-meta">
-            <a href="https://openaccess.thecvf.com/content/CVPR2026/html/Yang_Omni_IIE_Bench_Benchmarking_the_Practical_Capabilities_of_Image_Editing_CVPR_2026_paper.html" target="_blank" rel="noreferrer">CVPR 2026</a>
-            <span>Instruction Following</span>
-            <span>Regional Fidelity</span>
-            <span>Global Quality</span>
+            <a
+              href="https://openaccess.thecvf.com/content/CVPR2026/html/Yang_Omni_IIE_Bench_Benchmarking_the_Practical_Capabilities_of_Image_Editing_CVPR_2026_paper.html"
+              target="_blank"
+              rel="noreferrer"
+            >CVPR 2026 paper</a>
+            <span>Single-turn consistency</span>
+            <span>Multi-turn coordination</span>
+            <span>Human-curated benchmark</span>
           </div>
-          <figure class="detail-figure">
-            <img src="../assets/project-figures/omni-iie-diagram.svg" alt="Omni IIE evaluation diagram" />
-            <figcaption>Evaluation structure diagram for instruction-guided image editing.</figcaption>
+          <div class="role-note">
+            <strong>My role</strong>
+            <p>
+              Co-author (sixth author). The page reflects the paper’s benchmark construction and
+              evaluation protocol without claiming equal-contribution status.
+            </p>
+          </div>
+          <figure class="detail-figure hero-figure">
+            <a
+              href="../assets/project-figures/omni-iie-figure1.png"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Open the Omni IIE Bench construction figure at full resolution"
+            >
+              <img
+                src="../assets/project-figures/omni-iie-figure1.png"
+                alt="Omni IIE Bench pipeline for text generation, image generation, human filtering, and mask generation"
+                width="1835"
+                height="1050"
+                fetchpriority="high"
+              />
+            </a>
+            <figcaption>
+              Dataset construction pipeline spanning text generation, single- and multi-turn image
+              generation, strict human filtering, and localized mask construction. Source: Figure 1
+              of the CVPR 2026 paper.
+            </figcaption>
           </figure>
         </section>
+
         <section class="detail-section">
-          <h2>Evaluation Gap</h2>
-          <p>
-            Image editing systems need to preserve the original content while applying targeted
-            changes. A good benchmark should therefore evaluate global image quality, local edit
-            fidelity, and instruction compliance together.
-          </p>
-          <div class="method-flow">
-            <span>Instruction</span>
-            <span>Edited Region</span>
-            <span>Unedited Context</span>
-            <span>Final Score</span>
-          </div>
-          <div class="equation-stack">
-            <div class="equation">
-              <code>S_total = α · S_instruction + β · S_region + γ · S_global</code>
-              <span>Practical editing evaluation balances compliance, local fidelity, and whole-image quality.</span>
+          <span class="section-label">Benchmark scale</span>
+          <h2>A dual-track evaluation built from 2,856 final images</h2>
+          <div class="metric-grid">
+            <div class="metric-card">
+              <span class="metric-value">1,725</span>
+              <span class="metric-label">Single-turn editing dialogues across semantic scales.</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">260</span>
+              <span class="metric-label">Multi-turn groups containing 1,131 edit turns.</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">12</span>
+              <span class="metric-label">Source datasets spanning diverse visual domains.</span>
             </div>
           </div>
         </section>
+
         <section class="detail-grid">
           <section class="detail-section">
-            <h2>Dimensions</h2>
+            <span class="section-label">Track 1</span>
+            <h2>Single-turn Consistency</h2>
+            <p>
+              A single edit is tested at low and high semantic scales. The benchmark asks whether
+              the model changes the intended attribute or entity while keeping foreground and
+              background regions that should remain stable.
+            </p>
             <ul>
-              <li>Whether the requested region or attribute is actually changed.</li>
-              <li>Whether unrelated areas remain stable.</li>
-              <li>Whether the final image is visually plausible and semantically consistent.</li>
+              <li>Attribute modification and entity replacement.</li>
+              <li>Localized foreground/background fidelity.</li>
+              <li>Instruction compliance under different edit granularities.</li>
             </ul>
           </section>
           <section class="detail-section">
-            <h2>Why It Connects</h2>
+            <span class="section-label">Track 2</span>
+            <h2>Multi-turn Coordination</h2>
+            <p>
+              Edit sequences alternate semantic scales for as many as 16 turns. This exposes error
+              accumulation, instruction conflicts, and the model’s ability to preserve earlier
+              successful edits while applying a new request.
+            </p>
             <ul>
-              <li>Benchmarks guide post-training and model selection.</li>
-              <li>Fine-grained evaluation helps compare foundation editing models.</li>
-              <li>It complements retrieval and multimodal pre-training work with evaluation design.</li>
+              <li>Up to 16 sequential turns.</li>
+              <li>Alternating fine- and coarse-grained edits.</li>
+              <li>Coordination across the entire editing history.</li>
             </ul>
           </section>
         </section>
+
+        <section class="detail-section">
+          <span class="section-label">Data curation</span>
+          <h2>Automated generation followed by strict human filtering</h2>
+          <p>
+            The construction pipeline uses GPT-4o to create editing instructions, Nano Banana to
+            synthesize candidate edits, and GroundingDINO plus SAM to localize relevant regions.
+            Human filtering then removes poor edits and unreliable masks before evaluation.
+          </p>
+          <div class="method-flow">
+            <span>12 source datasets</span>
+            <span>Instruction &amp; image generation</span>
+            <span>GroundingDINO + SAM masks</span>
+            <span>Multi-stage human review</span>
+          </div>
+          <div class="math-block">
+            \[
+            M_{\mathrm{fg}}=M_{\mathrm{gt}},
+            \qquad
+            M_{\mathrm{bg}}=1-M_{\mathrm{gt}}.
+            \]
+          </div>
+          <span class="math-caption">
+            Ground-truth masks define the edited foreground and its complementary background so
+            fidelity can be measured region by region.
+          </span>
+        </section>
+
+        <section class="detail-section">
+          <span class="section-label">Evaluation</span>
+          <h2>Regional fidelity, global quality, and one-strike instruction compliance</h2>
+          <p>
+            LPIPS and CLIP are computed over foreground, background, and the whole image. SSIM
+            measures structural preservation, while a one-strike QA term penalizes failure to
+            satisfy the requested edit. PSNR is also reported by the benchmark, but it is not part
+            of the paper’s Overall score.
+          </p>
+          <div class="math-block">
+            \[
+            \begin{aligned}
+            \mathrm{Overall}
+            &amp;=\frac14\Bigg(
+            \frac{3-\sum_{r\in\{\mathrm{FG},\mathrm{BG},\mathrm{ALL}\}}\mathrm{LPIPS}_r}{3}\\
+            &amp;\qquad
+            +\frac{\sum_{r\in\{\mathrm{FG},\mathrm{BG},\mathrm{ALL}\}}\mathrm{CLIP}_r}{3}\\
+            &amp;\qquad+\mathrm{QA}+\mathrm{SSIM}
+            \Bigg).
+            \end{aligned}
+            \]
+          </div>
+          <span class="math-caption">
+            Lower LPIPS is converted to a positive contribution; CLIP, QA, and SSIM reward semantic
+            fidelity, compliance, and structure preservation.
+          </span>
+        </section>
+
+        <section class="detail-section">
+          <span class="section-label">Why it matters</span>
+          <h2>A practical editor must coordinate change and preservation</h2>
+          <div class="insight-grid">
+            <div class="insight-card">
+              <h3>Beyond aesthetics</h3>
+              <p>A visually pleasing image can still fail the instruction or alter protected content.</p>
+            </div>
+            <div class="insight-card">
+              <h3>Beyond one turn</h3>
+              <p>Long edit sessions reveal compounding errors hidden by isolated single-step tests.</p>
+            </div>
+            <div class="insight-card">
+              <h3>Actionable diagnosis</h3>
+              <p>Foreground/background scores identify where an editor changes too much or too little.</p>
+            </div>
+          </div>
+        </section>
+
+        <nav class="project-nav" aria-label="Project navigation">
+          <a href="vla-robotics.html">← Previous: Robo-Dopamine 2.0</a>
+          <a href="shotfinder.html">Next: ShotFinder →</a>
+        </nav>
       </main>
       <footer class="footer"><p>© <span id="year"></span> Haopeng Jin.</p></footer>
     </div>

@@ -3,76 +3,150 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ShotFinder / RVMS-Bench / RACLO | Haopeng Jin</title>
+    <meta
+      name="description"
+      content="A research program in open-domain video search: ShotFinder, RVMS-Bench, and RACLO."
+    />
+    <title>Open-world Video Search Research | Haopeng Jin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Newsreader:opsz,wght@6..72,500;6..72,700&amp;display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
-    <div class="aurora-bg" aria-hidden="true"><span class="aurora-beam beam-one"></span></div>
+    <div class="aurora-bg" aria-hidden="true">
+      <span class="aurora-beam beam-one"></span>
+      <span class="aurora-particle particle-one"></span>
+    </div>
     <div class="site-shell">
       <main class="detail-main">
         <section class="detail-hero">
-          <a class="back-link" href="../index.html#research">← Back to homepage</a>
-          <p class="eyebrow">Open-world Video Search · Real-world Memory Retrieval</p>
-          <h1>ShotFinder / RVMS-Bench / RACLO</h1>
-          <p class="detail-lead">A research line for retrieving videos from fuzzy, open-world user memories instead of clean closed-pool captions.</p>
+          <a class="back-link" href="../index.html#research">← Back to projects</a>
+          <p class="eyebrow">Research Program · Open-domain Retrieval · Agentic Search</p>
+          <h1>Open-world Video Search</h1>
+          <p class="detail-lead">
+            A three-project research line for recovering videos from incomplete memories. ShotFinder
+            begins with a described shot; RVMS-Bench formalizes richer long-video memories; RACLO
+            turns those memories into an auditable Recall–Search–Verify agent.
+          </p>
           <div class="detail-meta">
-            <a href="https://arxiv.org/abs/2601.23232" target="_blank" rel="noreferrer">ShotFinder Paper</a>
-            <a href="https://arxiv.org/abs/2602.10159" target="_blank" rel="noreferrer">RVMS Paper</a>
-            <a href="https://huggingface.co/datasets/tencent/RVMS-Bench" target="_blank" rel="noreferrer">Dataset</a>
-          </div>
-          <div class="detail-grid">
-            <figure class="detail-figure">
-              <img src="../assets/project-figures/shotfinder-paper.png" alt="ShotFinder paper first page preview" />
-              <figcaption>ShotFinder public PDF preview.</figcaption>
-            </figure>
-            <figure class="detail-figure">
-              <img src="../assets/project-figures/rvms-paper.png" alt="RVMS-Bench paper first page preview" />
-              <figcaption>RVMS-Bench public PDF preview.</figcaption>
-            </figure>
+            <a href="https://arxiv.org/abs/2601.23232" target="_blank" rel="noreferrer">ShotFinder paper</a>
+            <a href="https://arxiv.org/abs/2602.10159" target="_blank" rel="noreferrer">RVMS-Bench + RACLO paper</a>
+            <a href="https://huggingface.co/datasets/tencent/RVMS-Bench" target="_blank" rel="noreferrer">RVMS-Bench dataset</a>
           </div>
         </section>
+
         <section class="detail-section">
-          <h2>Motivation</h2>
-          <p>
-            Most video retrieval benchmarks assume a clean text query and a fixed candidate pool.
-            Real users search from memory: they remember partial scenes, ambiguous actions, rough
-            time, visual style, or a social context. This project reframes retrieval around that
-            mismatch.
-          </p>
+          <span class="section-label">Research arc</span>
+          <h2>From one remembered shot to structured multimodal memory</h2>
           <div class="method-flow">
-            <span>Fuzzy Memory Query</span>
-            <span>First-stage Recall</span>
-            <span>Multimodal Reranking</span>
-            <span>Evidence-grounded Result</span>
+            <span>Shot-level description</span>
+            <span>Open-web source retrieval</span>
+            <span>G / K / T / A memory model</span>
+            <span>Dual-granularity verification</span>
           </div>
-          <div class="equation-stack">
-            <div class="equation">
-              <code>score(q, v) = sim(E_text(q), E_video(v)) + rerank(q, frames, events)</code>
-              <span>Combines embedding recall with a stronger reranker over visual and temporal evidence.</span>
+          <p>
+            The projects share an open-world motivation but answer different questions. They are
+            presented separately below so each benchmark, method, publication, and authorship
+            record remains precise.
+          </p>
+        </section>
+
+        <section class="feature-grid" aria-label="Video search projects">
+          <article class="feature-card has-preview">
+            <img
+              class="card-preview"
+              src="../assets/project-figures/shotfinder-figure3.png"
+              alt="ShotFinder Generator, Retriever, and Localizer"
+              width="2425"
+              height="1340"
+            />
+            <div class="card-kicker">Project 01 · Shot retrieval</div>
+            <h3><a class="title-link" href="shotfinder.html">ShotFinder</a></h3>
+            <p>
+              Imagines likely source-video context, expands it into web queries, retrieves candidate
+              videos, and grounds the remembered shot.
+            </p>
+            <ul>
+              <li>1,210 verified samples across 20 topics.</li>
+              <li>Second author, equal contribution.</li>
+            </ul>
+            <div class="card-links"><a href="shotfinder.html">Open project page</a></div>
+          </article>
+
+          <article class="feature-card has-preview">
+            <img
+              class="card-preview"
+              src="../assets/project-figures/rvms-figure1.png"
+              alt="RVMS paradigm compared with traditional closed-pool retrieval"
+              width="2030"
+              height="970"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="card-kicker">Project 02 · Benchmark</div>
+            <h3><a class="title-link" href="rvms-bench.html">RVMS-Bench</a></h3>
+            <p>
+              Defines real-world long-video search and moment localization from global, key,
+              temporal, and auditory memories.
+            </p>
+            <ul>
+              <li>1,440 verified samples across 20 categories.</li>
+              <li>Third author, equal contribution.</li>
+            </ul>
+            <div class="card-links"><a href="rvms-bench.html">Open benchmark page</a></div>
+          </article>
+
+          <article class="feature-card has-preview">
+            <img
+              class="card-preview"
+              src="../assets/project-figures/raclo-figure3.png"
+              alt="RACLO Recall-Search-Verify agent"
+              width="2160"
+              height="700"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="card-kicker">Project 03 · Agent framework</div>
+            <h3><a class="title-link" href="raclo.html">RACLO</a></h3>
+            <p>
+              Uses abductive query expansion, tool-using web search, and parallel video/frame
+              verification to recover the source and target moment.
+            </p>
+            <ul>
+              <li>Method in the RVMS-Bench shared paper.</li>
+              <li>Third author, equal contribution.</li>
+            </ul>
+            <div class="card-links"><a href="raclo.html">Open method page</a></div>
+          </article>
+        </section>
+
+        <section class="detail-section">
+          <span class="section-label">Common principle</span>
+          <h2>Retrieval is a reasoning-and-verification process</h2>
+          <div class="insight-grid">
+            <div class="insight-card">
+              <h3>Reason</h3>
+              <p>Infer missing source context from incomplete human memories.</p>
+            </div>
+            <div class="insight-card">
+              <h3>Search</h3>
+              <p>Interact with the changing open web instead of assuming a frozen candidate pool.</p>
+            </div>
+            <div class="insight-card">
+              <h3>Verify</h3>
+              <p>Ground the final answer in video-, frame-, temporal-, and audio-level evidence.</p>
             </div>
           </div>
         </section>
-        <section class="detail-grid">
-          <section class="detail-section">
-            <h2>Benchmark Design</h2>
-            <ul>
-              <li>Memory-like queries with incomplete visual and temporal information.</li>
-              <li>Large candidate pools with distractors that are semantically close.</li>
-              <li>Evaluation focused on recall, ranking quality, and robustness to fuzzy language.</li>
-            </ul>
-          </section>
-          <section class="detail-section">
-            <h2>Retrieval Pipeline</h2>
-            <ul>
-              <li>Video/text embedding for first-stage recall.</li>
-              <li>Reranking with stronger multimodal evidence.</li>
-              <li>Reasoning over events, objects, scene transitions, and user-memory clues.</li>
-            </ul>
-          </section>
-        </section>
+
+        <nav class="project-nav" aria-label="Project navigation">
+          <a href="../index.html#research">← All projects</a>
+          <a href="shotfinder.html">Start with ShotFinder →</a>
+        </nav>
       </main>
       <footer class="footer"><p>© <span id="year"></span> Haopeng Jin.</p></footer>
     </div>

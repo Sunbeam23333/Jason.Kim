@@ -6,7 +6,7 @@
     <title>Omni-Embedding | Haopeng Jin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Newsreader:opsz,wght@6..72,500;6..72,700&amp;display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
@@ -32,12 +32,12 @@
           </div>
           <div class="detail-grid">
             <figure class="detail-figure">
-              <img src="../assets/project-figures/omni-embedding-overview.png" alt="Omni-Embedding PDF preview" />
-              <figcaption>Omni-Embedding design notes preview rendered from the local PDF.</figcaption>
+              <img src="../assets/project-figures/omni-modal-tasks-clean.png" alt="Omni-modal task families diagram" />
+              <figcaption>Clean task-family diagram extracted from the Omni-Embedding design PDF.</figcaption>
             </figure>
             <figure class="detail-figure">
-              <img src="../assets/project-figures/omni-embedding-gains.png" alt="Omni-Embedding training and gains PDF preview" />
-              <figcaption>Training and benefit notes preview rendered from the local PDF.</figcaption>
+              <img src="../assets/project-figures/omni-architecture-clean.png" alt="Omni-Embedding architecture diagram" />
+              <figcaption>Clean architecture diagram extracted from the Omni-Embedding training notes.</figcaption>
             </figure>
           </div>
         </section>
@@ -105,18 +105,34 @@
             semantically close samples are not incorrectly pushed apart.
           </p>
           <div class="equation-stack">
-            <div class="equation">
-              <code>L(q, k+) = -log exp(sim(q, k+) / τ) / Σ_j exp(sim(q, k_j) / τ)</code>
-              <span>Contrastive alignment between a query and its positive document.</span>
+            <div class="math-block">
+              \[
+              \mathcal L(q,k^+)
+              =-\log
+              \frac{\exp\!\left(\operatorname{sim}(q,k^+)/\tau\right)}
+              {\sum_j\exp\!\left(\operatorname{sim}(q,k_j)/\tau\right)}.
+              \]
             </div>
-            <div class="equation">
-              <code>L_bi = L(q → k) + L(k → q)</code>
-              <span>Bidirectional InfoNCE optimizes both retrieval directions.</span>
+            <span class="math-caption">Contrastive alignment between a query and its positive document.</span>
+            <div class="math-block">
+              \[
+              \mathcal L_{\mathrm{bi}}
+              =\mathcal L(q\rightarrow k)+\mathcal L(k\rightarrow q).
+              \]
             </div>
-            <div class="equation">
-              <code>N_valid = {k_j | sim_source(j) &lt; θ and sim_target(j) &lt; θ}</code>
-              <span>Deduplicated negatives reduce false-negative pressure in dense multimodal batches.</span>
+            <span class="math-caption">Bidirectional InfoNCE optimizes both retrieval directions.</span>
+            <div class="math-block">
+              \[
+              \mathcal N_{\mathrm{valid}}
+              =\left\{k_j\;\middle|\;
+              \begin{array}{l}
+              \operatorname{sim}_{\mathrm{source}}(j)&lt;\theta,\\
+              \operatorname{sim}_{\mathrm{target}}(j)&lt;\theta
+              \end{array}
+              \right\}.
+              \]
             </div>
+            <span class="math-caption">Deduplicated negatives reduce false-negative pressure in dense multimodal batches.</span>
           </div>
         </section>
 
@@ -155,7 +171,7 @@
             dimension/quality trade-off for production ANN indexes.
           </p>
           <div class="card-links">
-            <a href="https://scholar.google.com/citations?hl=en&user=7NUo_ykAAAAJ" target="_blank" rel="noreferrer">
+            <a href="https://scholar.google.com/citations?hl=en&amp;user=7NUo_ykAAAAJ" target="_blank" rel="noreferrer">
               <span class="google-wordmark" aria-label="Google">
                 <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
               </span>

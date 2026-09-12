@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Vidu S2: Real-Time Interactive, Editable, and Spatial Video Generation. Haopeng Jin's contribution focuses on the VLM agentic system for interactive avatar generation."
+      content="Vidu S2: Real-Time Interactive, Editable, and Spatial Video Generation. Haopeng Jin contributes to agentic interaction and RL-based post-training for interactive avatar generation."
     />
     <title>Vidu S2: Real-Time Interactive, Editable, and Spatial Video Generation | Haopeng Jin</title>
     <link rel="canonical" href="https://sunbeam23333.github.io/Jason.Kim/pages/vidu-s2.html" />
     <meta property="og:title" content="Vidu S2 | Haopeng Jin" />
-    <meta property="og:description" content="Real-time interactive video generation. My contribution: the Vidu S2-Avatar agentic system for multimodal prompt planning, visual feedback, and reference control." />
+    <meta property="og:description" content="My Vidu S2 contributions: agentic interaction with prompt planning and visual verification, plus RL-based post-training with diffusion DPO and Streaming NFT. Expanded diagrams and editable PowerPoint included." />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://sunbeam23333.github.io/Jason.Kim/pages/vidu-s2.html" />
     <meta property="og:image" content="https://sunbeam23333.github.io/Jason.Kim/assets/project-figures/vidu-s2-overview.png" />
@@ -36,7 +36,8 @@
           <p class="detail-lead">
             <strong>Real-Time Interactive, Editable, and Spatial Video Generation.</strong>
             A streaming video system that responds to evolving user instructions, supports live
-            video editing, and explores immersive spatial-video experiences.
+            video editing, and explores immersive spatial-video experiences. My work spans
+            <strong>agentic interaction and RL-based post-training</strong> for Vidu S2-Avatar.
           </p>
           <div class="detail-meta">
             <a href="https://arxiv.org/abs/2609.11638" target="_blank" rel="noreferrer">arXiv paper</a>
@@ -47,12 +48,20 @@
           <div class="role-note">
             <strong>My contribution</strong>
             <p>
-              Co-author, responsible for the <strong>Agentic System</strong> in
-              <a href="https://arxiv.org/html/2609.11638v1#S2.SS4" target="_blank" rel="noreferrer">Section 2.4</a>:
-              connecting user inputs, VLM-based prompt planning, avatar generation, and visual
-              feedback into an end-to-end interaction loop.
+              Co-author contributing to the <strong>Agentic System</strong>
+              (<a href="https://arxiv.org/html/2609.11638v1#S2.SS4" target="_blank" rel="noreferrer">Section 2.4</a>)
+              and <strong>RL-based post-training</strong>
+              (<a href="https://arxiv.org/html/2609.11638v1#S2.SS2" target="_blank" rel="noreferrer">Section 2.2, Preference Optimization</a>).
+              My work connects multimodal inputs, prompt planning, generation, and visual feedback,
+              alongside preference- and reward-based optimization for the video model.
             </p>
           </div>
+          <nav class="detail-meta" aria-label="Explore my contributions">
+            <a href="#agentic-system">Agentic interaction</a>
+            <a href="#visual-feedback">VLM verification</a>
+            <a href="#rl-post-training">RL post-training</a>
+            <a href="../assets/downloads/vidu-s2-contribution-flows.pptx" download>Download editable diagrams (.pptx)</a>
+          </nav>
           <figure class="detail-figure hero-figure">
             <a
               href="../assets/project-figures/vidu-s2-overview.png"
@@ -78,7 +87,7 @@
         </section>
 
         <section class="detail-section" id="agentic-system">
-          <span class="section-label">My focus · Section 2.4</span>
+          <span class="section-label">My contribution · Agentic interaction · Section 2.4</span>
           <h2>Close the loop between an instruction and what the video actually shows</h2>
           <p>
             The VLM agent interprets text or transcribed speech together with the initial image
@@ -91,27 +100,28 @@
             <span>03 · Vidu S2-Avatar generation</span>
             <span>04 · Frame feedback → next prompt</span>
           </div>
-          <figure class="detail-figure compact-figure">
+          <figure class="detail-figure">
             <a
-              href="../assets/project-figures/vidu-s2-agentic-system.png"
+              href="../assets/project-figures/vidu-s2-agentic-expanded.png"
               target="_blank"
               rel="noreferrer"
-              aria-label="Open the agentic system schematic at full resolution"
+              aria-label="Open the expanded agentic interaction schematic at full resolution"
             >
               <img
-                src="../assets/project-figures/vidu-s2-agentic-system.png"
-                alt="Schematic of a VLM agent receiving user instructions and images, prompting Vidu S2-Avatar, and reviewing generated frames"
-                width="780"
-                height="303"
+                src="../assets/project-figures/vidu-s2-agentic-expanded.png"
+                alt="Expanded project-development schematic connecting user inputs, the agentic interface, video generation, and visual feedback"
+                width="1560"
+                height="1117"
                 loading="lazy"
                 decoding="async"
               />
             </a>
             <figcaption>
-              Agentic System Pipeline (schematic). Source: Zhang et al. (2026),
-              <a href="https://arxiv.org/html/2609.11638v1#S2.F3" target="_blank" rel="noreferrer">Figure 3</a>.
-              Reproduced unchanged under
-              <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>.
+              Author-expanded project-development schematic of the agentic interface described in
+              <a href="https://arxiv.org/html/2609.11638v1#S2.SS4" target="_blank" rel="noreferrer">Section 2.4</a>.
+              Source images and an offline output example illustrate the interface; they do not
+              quantify verification performance. This expanded diagram is distinct from the
+              simplified Figure 3 in the paper. Click to enlarge.
             </figcaption>
           </figure>
           <div class="insight-grid">
@@ -137,12 +147,95 @@
               </p>
             </div>
           </div>
-          <div class="project-callout">
-            <p>
-              Accepted completion shifts the prompt toward the resulting pose or object state.
-              Incomplete actions can trigger revised instructions; uncertain feedback leaves
-              completion unconfirmed.
-            </p>
+        </section>
+
+        <section class="detail-section" id="visual-feedback">
+          <span class="section-label">My contribution · VLM verification</span>
+          <h2>Use visual evidence to update the next action</h2>
+          <p>
+            The verifier reviews frames in time order. Accepted completion shifts the prompt
+            toward the resulting pose or object state; incomplete actions can trigger revised
+            instructions. Confidence and agreement across repeated observations support acceptance,
+            while inconclusive feedback leaves completion unconfirmed.
+          </p>
+          <figure class="detail-figure">
+            <a
+              href="../assets/project-figures/vidu-s2-vlm-verification.png"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Open the expanded VLM verification schematic at full resolution"
+            >
+              <img
+                src="../assets/project-figures/vidu-s2-vlm-verification.png"
+                alt="Illustrative action-progress storyboard and VLM verification flow showing partial and completed actions followed by condition updates"
+                width="1560"
+                height="1150"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <figcaption>
+              Author-expanded project-development schematic of visual verification and condition
+              updates. AI-redrawn storyboard frames and example verdicts illustrate the interaction;
+              they are not measured rollouts or evaluation results. The public method is described in
+              <a href="https://arxiv.org/html/2609.11638v1#S2.SS4" target="_blank" rel="noreferrer">Section 2.4</a>.
+              Click to enlarge.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section class="detail-section" id="rl-post-training">
+          <span class="section-label">My contribution · RL-based post-training · Section 2.2</span>
+          <h2>Improve the teacher, then optimize the streaming model on its own trajectories</h2>
+          <p>
+            I contributed to preference- and reward-based post-training. The public
+            <a href="https://arxiv.org/html/2609.11638v1#S2.SS2" target="_blank" rel="noreferrer">Preference Optimization section</a>
+            describes complementary optimization at the bidirectional and streaming stages.
+          </p>
+          <div class="detail-grid">
+            <div class="insight-card">
+              <h3>Bidirectional · Diffusion DPO</h3>
+              <p>
+                Diffusion-based Direct Preference Optimization improves visual fidelity, facial
+                expressiveness, motion naturalness, and audio–visual synchronization, providing a
+                stronger teacher for subsequent causal adaptation.
+              </p>
+            </div>
+            <div class="insight-card">
+              <h3>Streaming · Streaming NFT</h3>
+              <p>
+                Streaming Negative-aware Fine-Tuning optimizes the causal backbone on self-generated
+                trajectories: a detached autoregressive rollout is followed by sampled trajectory
+                replay for reward-based optimization, following the principle of Self-Replay Forcing.
+              </p>
+            </div>
+          </div>
+          <figure class="detail-figure">
+            <a
+              href="../assets/project-figures/vidu-s2-rl-training.png"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Open the RL post-training diagram at full resolution"
+            >
+              <img
+                src="../assets/project-figures/vidu-s2-rl-training.png"
+                alt="RL post-training diagram showing bidirectional diffusion DPO and streaming NFT with detached rollout, trajectory replay, and reward-based optimization"
+                width="2560"
+                height="1440"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <figcaption>
+              Author-drawn summary of the public post-training procedure in Zhang et al. (2026),
+              <a href="https://arxiv.org/html/2609.11638v1#S2.SS2" target="_blank" rel="noreferrer">Section 2.2, Preference Optimization</a>.
+              Diagram elements are available in the editable PowerPoint below.
+            </figcaption>
+          </figure>
+          <div class="detail-meta">
+            <a href="../assets/downloads/vidu-s2-contribution-flows.pptx" download>Download agentic &amp; RL diagrams (.pptx)</a>
+            <a href="../assets/project-figures/vidu-s2-agentic-flow.png" target="_blank" rel="noreferrer">Agentic flow · PNG</a>
+            <a href="../assets/project-figures/vidu-s2-rl-training.png" target="_blank" rel="noreferrer">RL training flow · PNG</a>
           </div>
         </section>
 
@@ -219,11 +312,15 @@
             <a href="https://arxiv.org/abs/2609.11638" target="_blank" rel="noreferrer">Read the paper and full author list →</a>
           </p>
           <p>
-            This page summarizes the public paper, with my contribution centered on its
-            <a href="https://arxiv.org/html/2609.11638v1#S2.SS4" target="_blank" rel="noreferrer">Agentic System section</a>.
-            Figures 1, 3, and 4 are credited to the paper’s authors and reproduced without
+            My contributions cover
+            <a href="https://arxiv.org/html/2609.11638v1#S2.SS4" target="_blank" rel="noreferrer">agentic interaction</a>
+            and <a href="https://arxiv.org/html/2609.11638v1#S2.SS2" target="_blank" rel="noreferrer">RL-based post-training</a>.
+            Figures 1 and 4 are credited to the paper’s authors and reproduced without
             modification under its
             <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">Creative Commons Attribution 4.0 license</a>.
+            The expanded agentic and verification diagrams are author-provided project-development
+            schematics with illustrative frames. The RL diagram is an author-drawn summary of the
+            public method; these diagrams are not unchanged arXiv figures.
           </p>
         </section>
 

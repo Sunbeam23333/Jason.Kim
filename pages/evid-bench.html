@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="EVID-Bench tests whether models can find video misinformation by comparing footage from multiple sources. Findings of EMNLP 2026." />
+    <title>EVID-Bench · Findings of EMNLP 2026 | Haopeng Jin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Newsreader:opsz,wght@6..72,500;6..72,700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="aurora-bg" aria-hidden="true">
+      <span class="aurora-beam beam-two"></span>
+      <span class="aurora-particle particle-one"></span>
+    </div>
+    <div class="site-shell">
+      <main class="detail-main">
+        <section class="detail-hero">
+          <a class="back-link" href="../index.html#research">← Back to projects</a>
+          <p class="eyebrow">Findings of EMNLP 2026 · Video Verification</p>
+          <h1>EVID-Bench</h1>
+          <p class="detail-lead">When Seeing Is Not Believing—A Benchmark for Search-Grounded Video Misinformation Detection</p>
+          <div class="detail-meta">
+            <a href="https://aclanthology.org/2026.findings-emnlp.763/">ACL Anthology</a>
+            <a href="https://github.com/yutao1024/EVID-Bench">Code</a>
+            <a href="https://huggingface.co/datasets/Kirito-Lab/EVID-Bench">Dataset</a>
+          </div>
+          <div class="role-note">
+            <strong>My role</strong>
+            <p>Co-author with Tao Yu, Yujia Yang, Shenghua Chai, Jinshuai Zhang and colleagues.</p>
+          </div>
+        </section>
+        <section class="detail-section">
+          <h2>Finding the footage that changes the interpretation</h2>
+          <p>
+            An edit can reverse the apparent order of two events while every frame still looks
+            authentic. EVID-Bench asks a model to find related footage on the open web, compare
+            the accounts, and explain which details in the input video are misleading.
+          </p>
+          <figure class="detail-figure">
+            <a href="https://github.com/yutao1024/EVID-Bench/blob/ecbd12fd4ef20f65e9b3ca78cbe555811d63cf98/assets/overview.png">
+              <img src="https://raw.githubusercontent.com/yutao1024/EVID-Bench/ecbd12fd4ef20f65e9b3ca78cbe555811d63cf98/assets/overview.png"
+                alt="Overview of the EVID-Bench video verification task from the authors’ project repository" loading="lazy" decoding="async" />
+            </a>
+            <figcaption>Benchmark overview from the <a href="https://github.com/yutao1024/EVID-Bench">EVID-Bench repository</a>.</figcaption>
+          </figure>
+        </section>
+        <section class="detail-section">
+          <h2>What the evaluation found</h2>
+          <p>
+            The benchmark includes 222 videos and nine types of manipulation drawn from three
+            categories: AI generation, edits to a single source, and edits that combine sources.
+            Across nine multimodal models, the best system scored 61.43% on individual points
+            of misinformation and 43.24% at the video level. Models often found a relevant clue
+            and stopped searching before they could explain the full edit.
+          </p>
+        </section>
+        <nav class="project-nav" aria-label="Project navigation">
+          <a href="shotfinder.html">← Previous: ShotFinder</a>
+          <a href="rvms-bench.html">Next: RVMS-Bench →</a>
+        </nav>
+      </main>
+      <footer class="footer"><p>© <span id="year"></span> Haopeng Jin.</p></footer>
+    </div>
+    <script src="../script.js"></script>
+  </body>
+</html>

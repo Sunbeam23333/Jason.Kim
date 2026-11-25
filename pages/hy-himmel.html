@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="HY-Himmel: hierarchical interleaved multi-stream motion encoding for efficient long-video understanding."
+      content="HIMMEL, a NeurIPS 2026 paper on hierarchical interleaved multi-stream motion encoding for long video understanding."
     />
-    <title>HY-Himmel Technical Report | Haopeng Jin</title>
+    <title>HIMMEL · NeurIPS 2026 | Haopeng Jin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,15 +25,17 @@
       <main class="detail-main">
         <section class="detail-hero">
           <a class="back-link" href="../index.html#research">← Back to projects</a>
-          <p class="eyebrow">Technical Report · Long-video Understanding · Efficient MLLMs</p>
-          <h1>HY-Himmel Technical Report</h1>
+          <p class="eyebrow">NeurIPS 2026 · Main Track · Long Video Understanding</p>
+          <h1>HIMMEL</h1>
           <p class="detail-lead">
             Hierarchical Interleaved Multi-stream Motion Encoding for Long Video Understanding.
-            HY-Himmel separates sparse semantic anchors from dense compressed-domain motion so a
+            HIMMEL separates sparse semantic anchors from dense compressed-domain motion so a
             multimodal language model can reason over long videos without paying the visual-token
             cost of uniformly encoding every frame.
           </p>
           <div class="detail-meta">
+            <a href="https://neurips.cc/virtual/2026/poster/151828" target="_blank" rel="noreferrer">NeurIPS poster</a>
+            <a href="https://github.com/Sunbeam23333/HIMMEL" target="_blank" rel="noreferrer">Code</a>
             <a href="https://arxiv.org/abs/2605.08158" target="_blank" rel="noreferrer">arXiv 2605.08158</a>
             <span>RGB / Motion Vector / Residual</span>
             <span>Frozen VLM</span>
@@ -42,7 +44,7 @@
           <div class="role-note">
             <strong>My role</strong>
             <p>
-              First author and project lead; joint corresponding author with Hongzhu Yi. I led the
+              First author and project lead. I led the
               hierarchical semantic-motion design, training formulation, and evaluation.
             </p>
           </div>
@@ -51,17 +53,17 @@
               href="../assets/project-figures/hy-himmel-figure1.png"
               target="_blank"
               rel="noreferrer"
-              aria-label="Open the HY-Himmel architecture figure at full resolution"
+              aria-label="Open the HIMMEL architecture figure at full resolution"
             >
               <img
                 src="../assets/project-figures/hy-himmel-figure1.png"
-                alt="HY-Himmel compares dense visual encoding with sparse semantic anchors and dense compressed-domain motion encoding"
+                alt="HIMMEL compares dense visual encoding with sparse semantic anchors and dense compressed-domain motion encoding"
               />
             </a>
             <figcaption>
-              HY-Himmel overview. Sparse I-frames preserve global semantics; interleaved local clips
+              HIMMEL overview. Sparse I-frames preserve global semantics; interleaved local clips
               contribute RGB, motion-vector, and residual evidence. Open the figure for the
-              full-resolution version. Source: Figure 1 of the technical report.
+              full-resolution version. Figure 1 from the <a href="https://arxiv.org/abs/2605.08158v1">original technical report</a>.
             </figcaption>
           </figure>
         </section>
@@ -72,7 +74,7 @@
           <div class="metric-grid">
             <div class="metric-card">
               <span class="metric-value">63.5</span>
-              <span class="metric-label">Video-MME score reported by HY-Himmel.</span>
+              <span class="metric-label">Video-MME score reported by HIMMEL.</span>
             </div>
             <div class="metric-card">
               <span class="metric-value">+2.3</span>
@@ -85,7 +87,7 @@
           </div>
           <div class="project-callout">
             <p>
-              The central result is not simply “sample fewer frames.” HY-Himmel assigns different
+              HIMMEL assigns different
               jobs to different streams: sparse anchors carry scene semantics, while compressed
               video signals preserve local motion at low token cost.
             </p>
@@ -97,7 +99,7 @@
           <h2>Decompose a long video into semantic anchors and interleaved motion clips</h2>
           <p>
             Uniform frame sampling wastes visual tokens on redundant appearance, yet aggressive
-            sparse sampling can miss brief actions. HY-Himmel first selects semantic anchor frames
+            sparse sampling can miss brief actions. HIMMEL first selects semantic anchor frames
             and then associates them with local interleaved clips that retain fine-grained temporal
             evidence.
           </p>
@@ -202,7 +204,7 @@
 
         <section class="detail-section">
           <span class="section-label">Interpretation</span>
-          <h2>What the technical report establishes—and what it does not</h2>
+          <h2>Results and limitations</h2>
           <div class="insight-grid">
             <div class="insight-card">
               <h3>Established</h3>
